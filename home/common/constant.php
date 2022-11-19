@@ -1,5 +1,7 @@
 <?php
 
+include_once __DIR__."/../../getprojectpath.php";
+
 /**
  * Define some required constant variables
  * php constants become global constant while script is running
@@ -9,11 +11,13 @@
  * HOME_PATH : home basic path
  *
  */
-
-define('CSS_PATH',"/home/assets/css");
-define('SCRIPT_PATH',"/home/assets/script");
-define('PAGES_PATH',"/home/pages");
-define('HOME_PATH',"/home");
-define('TEMPLATES_PATH',$_SERVER['DOCUMENT_ROOT']."/home/templates");
+# Get Project Root
+define('PROJECT_ROOT_PATH',getprojectpath());
+// href hyperlink 타입 ->
+define('CSS_PATH',PROJECT_ROOT_PATH."/home/assets/css");
+define('SCRIPT_PATH',PROJECT_ROOT_PATH."/home/assets/script");
+define('PAGES_PATH',PROJECT_ROOT_PATH."/home/pages");
+define('HOME_PATH',PROJECT_ROOT_PATH."/home");
+define('TEMPLATES_PATH',dirname(__FILE__)."/../templates/");
 
 ?>

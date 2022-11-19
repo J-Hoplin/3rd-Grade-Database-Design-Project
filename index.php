@@ -8,6 +8,6 @@
  *
  */
 
-header("Location:/home/");
+header("Location:home");
 
 ?>

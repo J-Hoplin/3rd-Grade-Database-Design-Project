@@ -1,6 +1,6 @@
 <?php
 
-include_once $_SERVER['DOCUMENT_ROOT'] . "/home/common/common.php";
+include_once __DIR__."/../../common/common.php";
 
 Header::render();
 ?>
@@ -33,7 +33,7 @@ Header::render();
             <tr>
                 <td class="tg-baqh">1</td>
                 <td class="tg-baqh">
-                    <a href="<?php echo PAGES_PATH."/player/playerInfo.php" ?>">서해원</a>
+                    <a href="<?php echo PAGES_PATH."/player/playerinfo.php" ?>">서해원</a>
                 </td>
                 <td class="tg-baqh">서울FC</td>
                 <td class="tg-baqh">FW</td>

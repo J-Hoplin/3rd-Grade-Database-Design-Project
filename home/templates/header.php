@@ -8,8 +8,8 @@ only header
 
 <?php
 
-include_once $_SERVER['DOCUMENT_ROOT']."/home/common/constant.php";
-include_once $_SERVER['DOCUMENT_ROOT']."/home/templates/template.php";
+include_once __DIR__."/../common/constant.php";
+include_once "template.php";
 
 class Header implements template_header_footer {
     /**

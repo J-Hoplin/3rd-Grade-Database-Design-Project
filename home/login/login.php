@@ -1,6 +1,6 @@
 <?php
 
-include_once $_SERVER['DOCUMENT_ROOT']."/home/common/common.php";
+include_once __DIR__."/../common/common.php";
 
 ?>
 <?php

@@ -1,6 +1,9 @@
 <?php
 
-include_once $_SERVER['DOCUMENT_ROOT']."/home/common/constant.php";
+include_once __DIR__."/../common/common.php";
+
+BlockHTTPAccess::filter();
+
 session_start();
 // Destroy session id and session variables
 session_destroy();

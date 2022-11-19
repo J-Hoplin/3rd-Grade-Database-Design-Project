@@ -1,6 +1,6 @@
 <?php
 
-include_once $_SERVER['DOCUMENT_ROOT']."/home/templates/template.php";
+include_once __DIR__."/../../template.php";
 
 class title_calendar implements template_main_title{
     public static function title()

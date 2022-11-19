@@ -1,9 +1,9 @@
 <?php
 
-include_once $_SERVER['DOCUMENT_ROOT']."/home/templates/template.php";
-include_once $_SERVER['DOCUMENT_ROOT']."/home/templates/main-titles/calendar/index.php";
-include_once $_SERVER['DOCUMENT_ROOT']."/home/templates/main-titles/player/index.php";
-include_once $_SERVER['DOCUMENT_ROOT']."/home/templates/main-titles/team/index.php";
+include_once __DIR__."/../template.php";
+include_once "calendar/index.php";
+include_once "player/index.php";
+include_once "team/index.php";
 
 class title_main implements template_main_title{
     public static function title()
