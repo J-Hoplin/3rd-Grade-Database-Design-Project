@@ -9,7 +9,7 @@ class OracleConnector{
     public function __construct()
     {
         $config = parse_ini_file(dirname(__FILE__)."/../assets/config/config.ini");
-        $db = '
+        $this->db = '
         (DESCRIPTION= 
             (ADDRESS_LIST= 
                 (ADDRESS = 
@@ -22,12 +22,10 @@ class OracleConnector{
                 (SID = orcl)
             )
         )';
-        $connect = oci_connect($config['username'],$config['password'],$db);
-        if(!$connect){
+        $this->connect = oci_connect($config['username'],$config['password'],$this->db);
+        if(!$this->connect){
             $e=oci_error();
             trigger_error(htmlentities($e['message'],ENT_QUOTES),E_USER_ERROR);
-        }else{
-            echo "Connection success";
         }
     }
 }

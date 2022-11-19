@@ -2,9 +2,8 @@
 
 include_once __DIR__."/../common/common.php";
 
-?>
-<?php
 Header::render();
+
 ?>
   <div class="index-main">
     <div class="index-main__top">
