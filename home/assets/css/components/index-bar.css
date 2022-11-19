@@ -1,0 +1,51 @@
+@import "/home/csse/css/variables.css";
+
+.index-bar {
+  position: absolute;
+  top: 0;
+
+  display: flex;
+  align-items: center;
+  padding: 1% 0%;
+
+  width: 100%;
+  height: 4%;
+  background-color: #f2f3f7;
+  color: black;
+}
+
+.index-bar__column {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+}
+
+.index-bar a {
+  width: 100%;
+  height: 100%;
+}
+
+.index-bar__column__svg {
+  width: 15%;
+  padding-left: 3%;
+}
+
+.index-bar__column__name {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  justify-content: right;
+
+}
+
+.index-bar__column span {
+  padding-top: 1%;
+  font-size: 1.2em;
+  font-weight: bold;
+  padding-right: 3%;
+}

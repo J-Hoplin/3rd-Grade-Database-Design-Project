@@ -1,0 +1,39 @@
+@import "reset.css";
+@import "variables.css";
+
+/* Components */
+@import "components/index-bar.css";
+@import "components/index-header.css";
+@import "components/index-main.css";
+@import "components/index-footer.css";
+@import "components/index-main-table.css";
+@import "components/team-main.css";
+@import "components/team-main__table.css";
+@import "components/login.css";
+@import "components/calendar-main.css";
+@import "components/playerInfo.css";
+/* Screens */
+
+
+/*font*/
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap");
+ 
+
+/* Main */
+html {
+    width: 100%;
+    height: 100%;
+    background-color: #f2f3f7;
+}
+
+
+body {
+    width: 100%;
+    height: 100%;
+
+    background-color: #f2f3f7;
+    font-family: "Roboto", sans-serif;
+
+    display: flex;
+    flex-direction: column;
+}

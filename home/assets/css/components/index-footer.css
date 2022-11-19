@@ -1,0 +1,17 @@
+.index-footer {
+    position: absolute;
+    bottom: 0;
+
+    width: 100%;
+    height: 9%;
+    background-color: #001d49;
+    color: white;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.index-footer a {
+    padding-left: 1.5%;
+}

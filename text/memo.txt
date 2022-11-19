@@ -1,0 +1,342 @@
+index 화면
+-- K리그1 팀 순위 데이터 12위까지
+-- k리그1 선수 득점 순위 데이터 12위까지
+-- k리그1 선수 도움 순위 데이터 12위까지
+
+-- 팀 아이콘을 누르면 해당 팀 정보 사이트로 넘어감t715
+-- 팀내 선수 명단, 팀 구단 정보 등등
+
+team 화면
+-- k리그1 팀 순위, 클럽, 경기, 승점, 승, 무, 패, 득점, 실점, 득실 ,최근 5경기
+-- 11개
+
+선수 화면
+-- k리그1 선수 순위, 선수 명, 팀, 득점, 도움, 공격포인트, 슈팅, 경기당 기록, 출장, 교체, 경기당 기록
+-- 11개
+-- 선수 클릭 시 선수 개인화면으로 넘어감
+-- 선수 사진, 포지션, 나이, 등등
+
+일정 화면
+-- 날짜, 시간, 매치센터, 중계방송사, 중계진, 장소
+
+로그인 화면
+-- 
+
+
+    <div class="index-main__column">
+      <div class="index-main__column__team">
+        <div class="index-main__column__title">
+          <span>팀 순위</span>
+        </div>
+        <div class="index-main__column__table">
+          <table class="index-main__column__table__team">
+            <thead>
+              <tr>
+                <th class="index-main__column__table__team-ir84">순위</th>
+                <th class="index-main__column__table__team-ir84">클럽</th>
+                <th class="index-main__column__table__team-ir84">경기</th>
+                <th class="index-main__column__table__team-ir84">승점</th>
+                <th class="index-main__column__table__team-ir84">득점</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="index-main__column__table__team-ikg7">1</td>
+                <td class="index-main__column__table__team-ikg7">서울</td>
+                <td class="index-main__column__table__team-ikg7">2</td>
+                <td class="index-main__column__table__team-ikg7">6</td>
+                <td class="index-main__column__table__team-ikg7">4</td>
+              </tr>
+              <tr>
+                <td class="index-main__column__table__team-ikg7">2</td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+              </tr>
+              <tr>
+                <td class="index-main__column__table__team-ikg7">3</td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+              </tr>
+              <tr>
+                <td class="index-main__column__table__team-ikg7">4</td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+              </tr>
+              <tr>
+                <td class="index-main__column__table__team-ikg7">5</td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+              </tr>
+              <tr>
+                <td class="index-main__column__table__team-ikg7">6</td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+              </tr>
+              <tr>
+                <td class="index-main__column__table__team-ikg7">7</td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+              </tr>
+              <tr>
+                <td class="index-main__column__table__team-ikg7">8</td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+              </tr>
+              <tr>
+                <td class="index-main__column__table__team-ikg7">9</td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+              </tr>
+              <tr>
+                <td class="index-main__column__table__team-ikg7">10</td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+              </tr>
+              <tr>
+                <td class="index-main__column__table__team-ikg7">11</td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+              </tr>
+              <tr>
+                <td class="index-main__column__table__team-ikg7">12</td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+              </tr>
+            </tbody>
+            </table>
+        </div>
+      </div>
+      <div class="index-main__column__goals">
+        <div class="index-main__column__title">
+          <span>선수 순위</span>
+        </div>
+        <div class="index-main__column__table">
+          <table class="index-main__column__table__team">
+            <thead>
+              <tr>
+                <th class="index-main__column__table__team-ir84">순위</th>
+                <th class="index-main__column__table__team-ir84">클럽</th>
+                <th class="index-main__column__table__team-ir84">선수</th>
+                <th class="index-main__column__table__team-ir84">경기</th>
+                <th class="index-main__column__table__team-ir84">득점</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="index-main__column__table__team-ikg7">1</td>
+                <td class="index-main__column__table__team-ikg7">서울</td>
+                <td class="index-main__column__table__team-ikg7">2</td>
+                <td class="index-main__column__table__team-ikg7">6</td>
+                <td class="index-main__column__table__team-ikg7">4</td>
+              </tr>
+              <tr>
+                <td class="index-main__column__table__team-ikg7">2</td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+              </tr>
+              <tr>
+                <td class="index-main__column__table__team-ikg7">3</td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+              </tr>
+              <tr>
+                <td class="index-main__column__table__team-ikg7">4</td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+              </tr>
+              <tr>
+                <td class="index-main__column__table__team-ikg7">5</td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+              </tr>
+              <tr>
+                <td class="index-main__column__table__team-ikg7">6</td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+              </tr>
+              <tr>
+                <td class="index-main__column__table__team-ikg7">7</td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+              </tr>
+              <tr>
+                <td class="index-main__column__table__team-ikg7">8</td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+              </tr>
+              <tr>
+                <td class="index-main__column__table__team-ikg7">9</td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+              </tr>
+              <tr>
+                <td class="index-main__column__table__team-ikg7">10</td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+              </tr>
+              <tr>
+                <td class="index-main__column__table__team-ikg7">11</td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+              </tr>
+              <tr>
+                <td class="index-main__column__table__team-ikg7">12</td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+              </tr>
+            </tbody>
+            </table>
+        </div>
+      </div>
+      <div class="index-main__column__pass">
+        <div class="index-main__column__title">
+          <span>도움 순위</span>
+        </div>
+        <div class="index-main__column__table">
+          <table class="index-main__column__table__team">
+            <thead>
+              <tr>
+                <th class="index-main__column__table__team-ir84">순위</th>
+                <th class="index-main__column__table__team-ir84">클럽</th>
+                <th class="index-main__column__table__team-ir84">선수</th>
+                <th class="index-main__column__table__team-ir84">경기</th>
+                <th class="index-main__column__table__team-ir84">도움</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="index-main__column__table__team-ikg7">1</td>
+                <td class="index-main__column__table__team-ikg7">서울</td>
+                <td class="index-main__column__table__team-ikg7">2</td>
+                <td class="index-main__column__table__team-ikg7">6</td>
+                <td class="index-main__column__table__team-ikg7">4</td>
+              </tr>
+              <tr>
+                <td class="index-main__column__table__team-ikg7">2</td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+              </tr>
+              <tr>
+                <td class="index-main__column__table__team-ikg7">3</td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+              </tr>
+              <tr>
+                <td class="index-main__column__table__team-ikg7">4</td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+              </tr>
+              <tr>
+                <td class="index-main__column__table__team-ikg7">5</td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+              </tr>
+              <tr>
+                <td class="index-main__column__table__team-ikg7">6</td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+              </tr>
+              <tr>
+                <td class="index-main__column__table__team-ikg7">7</td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+              </tr>
+              <tr>
+                <td class="index-main__column__table__team-ikg7">8</td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+              </tr>
+              <tr>
+                <td class="index-main__column__table__team-ikg7">9</td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+              </tr>
+              <tr>
+                <td class="index-main__column__table__team-ikg7">10</td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+              </tr>
+              <tr>
+                <td class="index-main__column__table__team-ikg7">11</td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+              </tr>
+              <tr>
+                <td class="index-main__column__table__team-ikg7">12</td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+                <td class="index-main__column__table__team-ykga"></td>
+              </tr>
+            </tbody>
+            </table>
+        </div>
+      </div>
+    </div>
+
+
+

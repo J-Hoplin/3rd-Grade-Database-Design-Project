@@ -1,0 +1,40 @@
+.calendar-main {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    height: 100%;
+}
+
+.calendar-main__title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: left;
+
+    width: 100%;
+    height: 15%;
+    background-image: url("https://www.kleague.com/assets/images/sub_top.jpg");
+}
+
+.calendar-main__title span {
+    font-weight: 600;
+    margin-left: 5%;
+    color: white;
+    font-size: 2rem;
+}
+
+.calendar-main__title span:last-child {
+    font-weight: 300;
+    margin-top: 0.5%;
+    font-size: 0.8rem;
+}
+
+.calendar-main__column {
+    margin-top: 2.0%;
+}
+
+.calendar-main__column img {
+    width: 100%;
+    height: 500px;
+}
