@@ -1,6 +1,6 @@
 <?php
 
-include_once __DIR__."/../common/common.php";
+include_once "../../common/common.php";
 
 Header::render();
 
@@ -21,7 +21,7 @@ Header::render();
                   <form action="#" class="form" id="form1">
                     <h2 class="form__title">회원가입</h2>
                     <input type="text" placeholder="User" class="input" />
-                    <input type="email" placeholder="Email" class="input" />
+                    <input type="text" placeholder="Email" class="input" />
                     <input type="password" placeholder="Password" class="input" />
                     <button class="btn">회원가입</button>
                   </form>
@@ -31,7 +31,7 @@ Header::render();
                 <div class="container__form container--signin">
                   <form action="#" class="form" id="form2">
                     <h2 class="form__title">로그인</h2>
-                    <input type="email" placeholder="Email" class="input" />
+                    <input type="text" placeholder="Email" class="input" />
                     <input type="password" placeholder="Password" class="input" />
                     <a href="#" class="link">비밀번호 찾기</a>
                     <button class="btn">로그인</button>

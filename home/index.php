@@ -2,7 +2,7 @@
 
 # Get Project Root
 
-include_once __DIR__."/common/common.php";
+include_once "common/common.php";
 
 Header::render();
 ?>

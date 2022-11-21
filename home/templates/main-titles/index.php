@@ -1,6 +1,6 @@
 <?php
 
-include_once __DIR__."/../template.php";
+include_once "../template.php";
 include_once "calendar/index.php";
 include_once "player/index.php";
 include_once "team/index.php";
