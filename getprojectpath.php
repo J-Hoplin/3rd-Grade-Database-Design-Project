@@ -7,7 +7,7 @@ function getprojectpath(){
     $filerealpath = dirname(__FILE__);
     # Split project's path via '/' and make project path with slicing with length of server root directory count
     $res = join("/",array_slice(explode("/",$filerealpath),count(explode("/",$serveroot))));
-    return !strlen($res) ? "" : "/".join($res);
+    return !strlen($res) ? "" : "/".$res;
 }
 
 ?>
