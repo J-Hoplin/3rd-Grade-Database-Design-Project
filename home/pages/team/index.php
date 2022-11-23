@@ -9,7 +9,6 @@ Header::render();
     <?php
     title_team::title();
     ?>
-
     <div class="team-main__column">
         <style type="text/css">
 
@@ -33,7 +32,7 @@ Header::render();
             <tbody>
             <tr>
                 <td class="tg-baqh">1</td>
-                <td class="tg-baqh">서울</td>
+                <td class="tg-baqh"><a href="<?php echo PAGES_PATH."/team/teaminfo.php"?>">서울</a></td>
                 <td class="tg-baqh">1</td>
                 <td class="tg-baqh">1</td>
                 <td class="tg-baqh">1</td>

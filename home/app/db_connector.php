@@ -30,7 +30,7 @@ class OracleConnector{
 
     /**
      * @param $query
-     * @return array
+     * @return false
      *
      * execute SQL Query
      *
@@ -38,12 +38,34 @@ class OracleConnector{
      *
      * each array key refers to column of app
      */
-    protected function executeQuery($query){
-        $result = array();
+
+    private function queryexecution($query,$bucket){
         $stid = oci_parse($this->connect,$query);
-        oci_execute($stid);
-        oci_fetch_all($stid,$result);
+        /**
+         * Require bucket
+         *
+         * for oracle query security query buildment
+         */
+        if(count($bucket)){
+            foreach ($bucket as $key => $value){
+                oci_bind_by_name($stid,$key,$bucket[$key]);
+            }
+        }
+        return oci_execute($stid) ? $stid : false;
+    }
+
+    protected function select($query,$bucket = array()){
+        $result = array();
+        $stid = $this->queryexecution($query,$bucket);
+        if(!$stid){
+            return false;
+        }
+        oci_fetch_all($stid,$result,0,-1,OCI_FETCHSTATEMENT_BY_ROW);
         return $result;
+    }
+
+    protected function insert($query,$bucket = array()){
+        return $this->queryexecution($query,$bucket);
     }
 
     /**
@@ -62,5 +84,8 @@ class OracleConnector{
     public function closeConnection(){
         oci_close($this->connect);
     }
+
+    public static function echod(){
+        echo "hello world";
+    }
 }
-?>

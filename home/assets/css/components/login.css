@@ -101,7 +101,7 @@
   
   .overlay {
     background-color: var(--lightblue);
-    background: url("/home/csse/css/img/login-back.png");
+    background: url("/css/img/login-back.png");
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;

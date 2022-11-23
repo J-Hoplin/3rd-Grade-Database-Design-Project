@@ -1,8 +1,8 @@
 <?php
 
-include_once "../db_connector.php";
+include_once dirname(__FILE__)."/../db_connector.php";
+include_once dirname(__FILE__)."/../../common/validator.php";
 include_once "member_interface.php";
-include_once "../../common/validator.php";
 
 class Member extends OracleConnector implements memberable {
     public function __construct()
@@ -10,10 +10,17 @@ class Member extends OracleConnector implements memberable {
         parent::__construct();
     }
 
-
-    public function enroll()
+    public function enroll($username,$email,$password)
     {
-        // TODO: Implement enroll() method
+        $id = uniqid();
+        $sql = "INSERT INTO member VALUES (:id,:username, :password, :email)";
+        $bucket = array(
+            ":id" => $id,
+            ":username"=>$username,
+            ":email"=>$email,
+            ":password"=>$password
+        );
+        return $this->insert($sql,$bucket);
     }
 
     public function getinformation()

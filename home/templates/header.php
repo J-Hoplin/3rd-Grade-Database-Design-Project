@@ -8,7 +8,7 @@ only header
 
 <?php
 
-include_once "../common/constant.php";
+include_once dirname(__FILE__)."/../common/constant.php";
 include_once "template.php";
 
 class Header implements template_header_footer {

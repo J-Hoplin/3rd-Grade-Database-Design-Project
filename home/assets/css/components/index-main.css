@@ -44,100 +44,60 @@
     font-size: 0.8rem;
 }
 
-.index-main__top__search form {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    height: 100%;
-
-    justify-content: center;
-    align-items: center;
-}
-
-.index-main__top__search {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-
-    width: 41%;
-    height: 100%;
-    border-color: white;
-}
-
-
-.index-main__top__search input {
-    width: 400px;
-    height: 50px;
-
-    border-radius: 30px;
-    border-color: white;
-    border: solid;
-    padding: 0% 6%;
-}
-
 .index-main__column {
     width: 100%;
-    height: 100%;
+    height: 75%;
 
     display: flex;
-    flex-direction: row;
-    margin-top: 2.5%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     background-image: url("https://www.kleague.com/assets/images/about_bg_w.jpg");
 }
 
-.index-main__column__team {
-    width: 32%;
-    height: 100%;
+/*
+배경화면 video
+*/
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+.index-main__column__bg {
+    width: 100%;
+    height: 700px;
+    overflow: hidden;
+    margin: 0px auto;
+    position: relative;
+  }
+  video {
+    width: 100%;
+  }
+  .index-main__column__text {
+    position: absolute;
+    width: 100%;
+    top: 30%;
+    left: 48%;
+    transform: translate(-50%,-50%);
+  }
+  .index-main__column__text p {
+    text-align: center;
+    font-size: 48px;
+    color: #ffffff;
+  }
+  
+  
+  /*------------------*/
+  /* Layout (No Edit) */
+  /*------------------*/
+  @media(max-width:664px) {
+    .index-main__column__bg {
+      height: auto;
+    }
+    video {
+      height: 400px;
+    }
+    .index-main__column__text p {
+      font-size: 24px;
+    }
+  }
 
-.index-main__column__table {
-    margin-top: 5%;
-    width: 80%;
-    height: 73%;
-    background-color: #e9eaed;
-
-    padding: 2%;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.index-main__column__goals {
-    width: 36%;
-    height: 100%;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.index-main__column__pass {
-    width: 32%;
-    height: 100%;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.index-main__column__title {
-    width: auto;
-    height: auto;
-    font-weight: bold;
-    font-size: 1.2em;
-}
-
-i {
-    color: white;
-}
-
-.index-main__top__search button {
-    background-color: #001F55;
-    border: none;
-}
+  /*------------------*/
+  /* Layout (No Edit) */
+  /*------------------*/

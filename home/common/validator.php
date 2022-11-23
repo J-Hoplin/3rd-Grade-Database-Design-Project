@@ -1,7 +1,7 @@
 <?php
 
 
-class validator
+class Validator
 {
     /**
      * @param $email
@@ -18,7 +18,7 @@ class validator
     public static function usernamevalidator($username){
         // username pattern validation
         // 8~20글자 사이 길이, 영어 대소문자 및 숫자로만 이루어져있어야함
-        return preg_match("/^[a-zA-Z0-9]{8,20}$/",$username);
+        return preg_match("/^[a-zA-Z0-9]{5,20}$/",$username);
     }
 
     /**
