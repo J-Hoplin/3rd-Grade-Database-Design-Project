@@ -8,7 +8,7 @@ only header
 
 <?php
 
-include_once __DIR__."/../common/constant.php";
+include_once dirname(__FILE__)."/../common/constant.php";
 include_once "template.php";
 
 class Header implements template_header_footer {
@@ -44,13 +44,13 @@ class Header implements template_header_footer {
         <div class="index-bar__column__name">
             <span>DB 실습 2조 :</span>
             <span>
-          <a href="#">서해원</a>
+          <a href="https://github.com/SHW0331">서해원</a>
         </span>
             <span>
-          <a href="#">윤준호</a>
+          <a href="https://github.com/J-hoplin1">윤준호</a>
         </span>
             <span>
-          <a href="#">한정우</a>
+          <a href="https://github.com/hjw0623">한정우</a>
         </span>
             <span>'
             .$loginsection
@@ -73,7 +73,7 @@ class Header implements template_header_footer {
     }
 
     public static function render(){
-        echo self::buildheader('<a href="'.HOME_PATH.'/login/login.php">login</a>');
+        echo self::buildheader('<a href="'.HOME_PATH.'/pages/login/login.php">login</a>');
     }
 }
 
@@ -88,12 +88,12 @@ class HeaderWithAuth extends Header{
             echo '<script>
 alert("로그인이 필요합니다!");
 </script>';
-            echo '<meta http-equiv="refresh" content="0,'.HOME_PATH.'/login/login.php" >';
+            echo '<meta http-equiv="refresh" content="0,'.HOME_PATH.'/pages/login/login.php" >';
         }
 
         $username = $_SESSION['username'];
         $userid = $_SESSION['userid'];
-        echo self::buildheader('<a href="'.HOME_PATH.'/login/logout.php">로그아웃</a>');
+        echo self::buildheader('<a href="'.HOME_PATH.'/pages/login/logout.php">로그아웃</a>');
     }
 }
 

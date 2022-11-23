@@ -1,6 +1,6 @@
 <?php
 
-include_once __DIR__."/../../template.php";
+include_once dirname(__FILE__)."/../../template.php";
 
 class title_player implements template_main_title{
     public static function title()

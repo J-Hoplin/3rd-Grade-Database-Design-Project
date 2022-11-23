@@ -19,5 +19,15 @@ define('SCRIPT_PATH',PROJECT_ROOT_PATH."/home/assets/script");
 define('PAGES_PATH',PROJECT_ROOT_PATH."/home/pages");
 define('HOME_PATH',PROJECT_ROOT_PATH."/home");
 define('TEMPLATES_PATH',dirname(__FILE__)."/../templates/");
+define('APP_PATH', dirname(__FILE__) . "/../app/");
+define('HOST',$_SERVER["HTTP_HOST"]);
+
+// Message
+define('INVALID_EMAIL',"Email : Invalid email form");
+define('INVALID_USERNAME',"Username : Should be longer than 5 lower than 20 characters & Only upper/lower alphabet and number are available");
+define('INVALID_PASSWORD',"Password : Should be longer than 6 and require at least one upper & lower alphabet and number, special symbol");
+
+// project config
+define('PAGINATION',10);
 
 ?>

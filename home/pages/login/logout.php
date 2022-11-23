@@ -1,8 +1,6 @@
 <?php
 
-include_once __DIR__."/../common/common.php";
-
-BlockHTTPAccess::filter();
+include_once "../../common/common.php";
 
 session_start();
 // Destroy session id and session variables
