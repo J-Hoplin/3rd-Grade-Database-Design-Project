@@ -55,6 +55,9 @@ class OracleConnector{
     }
 
     protected function select($query,$bucket = array()){
+        /**
+         * Should use upper case word if parsing fetch_all
+         */
         $result = array();
         $stid = $this->queryexecution($query,$bucket);
         if(!$stid){
@@ -85,7 +88,4 @@ class OracleConnector{
         oci_close($this->connect);
     }
 
-    public static function echod(){
-        echo "hello world";
-    }
 }

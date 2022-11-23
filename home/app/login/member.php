@@ -10,6 +10,10 @@ class Member extends OracleConnector implements memberable {
         parent::__construct();
     }
 
+    public static function passwordencrypt($password){
+        return base64_encode(hash('sha256',$password, true));
+    }
+
     public function enroll($username,$email,$password)
     {
         $id = uniqid();
@@ -21,6 +25,22 @@ class Member extends OracleConnector implements memberable {
             ":password"=>$password
         );
         return $this->insert($sql,$bucket);
+    }
+
+    public function checkemailenrolled($email){
+        $sql = "SELECT email FROM member where email=:email ";
+        $bucket = array(
+            ":email"=>$email
+        );
+        return $this->select($sql,$bucket);
+    }
+
+    public function signinvalidation($email){
+        $sql = "SELECT id,username,password FROM member where email=:email";
+        $bucket = array(
+            ":email"=>$email
+        );
+        return $this->select($sql,$bucket);
     }
 
     public function getinformation()
