@@ -1,19 +1,19 @@
-@import "./reset.css";
-@import "./variables.css";
+@import "reset.css";
+@import "variables.css";
 
 /* Components */
-@import "./components/index-bar.css";
-@import "./components/index-header.css";
-@import "./components/index-main.css";
-@import "./components/index-footer.css";
-@import "./components/index-main-table.css";
-@import "./components/team-main.css";
-@import "./components/team-main__table.css";
-@import "./components/login.css";
-@import "./components/calendar-main.css";
-@import "./components/playerInfo.css";
-@import "./components/index-searchbar.css";
-@import "./components/teamInfo-main.css";
+@import "components/index-bar.css";
+@import "components/index-header.css";
+@import "components/index-main.css";
+@import "components/index-footer.css";
+@import "components/index-main-table.css";
+@import "components/team-main.css";
+@import "components/team-main__table.css";
+@import "components/login.css";
+@import "components/calendar-main.css";
+@import "components/playerInfo.css";
+@import "components/index-searchbar.css";
+@import "components/teamInfo-main.css";
 /* Screens */
 
 

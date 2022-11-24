@@ -12,18 +12,6 @@ if(strtoupper($_SERVER['REQUEST_METHOD']) == "POST"){
         $email = $_POST['signup']['email'];
         $password = $_POST['signup']['password'];
         /**
-         * Check if email alredy exists
-         *
-         * If exists -> Make enroll failure
-         */
-        $checkexist = $obj->checkemailenrolled($email);
-        if(count($checkexist)){
-            exit('<script>
-alert("Member with email \''.$email.'\' already exists");
-</script>
-<meta http-equiv="refresh" content="0; login.php">');
-        }
-        /**
          * error message bucket
          *
          * make validation each field and add validation fail message to bucket
@@ -48,6 +36,18 @@ alert("Member with email \''.$email.'\' already exists");
          * PHP에서 자바스크립트에 대해 줄바꿈을 추가해 주고 싶은경우에 \\n 을 써주어야함
          */
         if(!count($errmsg)){
+            /**
+             * Check if email alredy exists
+             *
+             * If exists -> Make enroll failure
+             */
+            $checkexist = $obj->checkemailenrolled($email);
+            if(count($checkexist)){
+                exit('<script>
+alert("Member with email \''.$email.'\' already exists");
+</script>
+<meta http-equiv="refresh" content="0; login.php">');
+            }
             $obj->enroll($username,$email,Member::passwordencrypt($password));
             exit('<script>
 alert("Complete to enroll!");
