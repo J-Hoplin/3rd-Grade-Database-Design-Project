@@ -1,5 +1,4 @@
 <?php
-
 include_once "../../common/common.php";
 include_once "../../app/login/member.php";
 

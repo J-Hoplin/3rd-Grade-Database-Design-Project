@@ -6,5 +6,8 @@ session_start();
 // Destroy session id and session variables
 session_destroy();
 
-header("Location: ".HOME_PATH);
+exit('<script>
+alert("Logout complete!");
+</script>
+<meta http-equiv="refresh" content="0;'.HOME_PATH.'">');
 ?>

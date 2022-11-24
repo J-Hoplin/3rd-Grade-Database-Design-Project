@@ -8,6 +8,8 @@ only header
 
 <?php
 
+// All of pages require session array
+session_start();
 include_once dirname(__FILE__)."/../common/constant.php";
 include_once "template.php";
 
@@ -51,10 +53,9 @@ class Header implements template_header_footer {
         </span>
             <span>
           <a href="https://github.com/hjw0623">한정우</a>
-        </span>
-            <span>'
+        </span>'
             .$loginsection
-            .'</span>
+            .'
         </div>
     </div>
 </div>
@@ -73,7 +74,25 @@ class Header implements template_header_footer {
     }
 
     public static function render(){
-        echo self::buildheader('<a href="'.HOME_PATH.'/pages/login/login.php">login</a>');
+        $state = "";
+        if(!isset($_SESSION['id']) or !isset($_SESSION['username'])){
+            $state = '<span>
+<a href="'.HOME_PATH.'/pages/login/login.php">login</a>
+</span>';
+        }else{
+            $state = '
+<span>
+<a href="'.HOME_PATH.'/pages/member/myinfo.php">
+'.$_SESSION['username'].'정보
+</a>
+</span>
+<span>
+<a href="'.HOME_PATH.'/pages/login/logout.php">
+로그아웃
+</a>
+</span>';
+        }
+        echo self::buildheader($state);
     }
 }
 
@@ -81,19 +100,26 @@ class Header implements template_header_footer {
 class HeaderWithAuth extends Header{
     public static function render()
     {
-        // Start session
-        session_start();
-
-        if(!isset($_SESSION['username']) or !isset($_SESSION['userid'])){
+        if(!isset($_SESSION['id']) or !isset($_SESSION['username'])){
             echo '<script>
 alert("로그인이 필요합니다!");
-</script>';
-            echo '<meta http-equiv="refresh" content="0,'.HOME_PATH.'/pages/login/login.php" >';
+</script>
+<meta http-equiv="refresh" content="0,'.HOME_PATH.'/pages/login/login.php" >';
         }
 
         $username = $_SESSION['username'];
         $userid = $_SESSION['userid'];
-        echo self::buildheader('<a href="'.HOME_PATH.'/pages/login/logout.php">로그아웃</a>');
+        echo self::buildheader('
+<span>
+<a href="'.HOME_PATH.'/pages/member/myinfo.php">
+내정보
+</a>
+</span>
+<span>
+<a href="'.HOME_PATH.'/pages/login/logout.php">
+로그아웃
+</a>
+</span>');
     }
 }
 
