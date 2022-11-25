@@ -39,7 +39,7 @@ class OracleConnector{
                 oci_bind_by_name($stid,$key,$bucket[$key]);
             }
         }
-        return oci_execute($stid) ? $stid : false;
+        return oci_execute($stid,OCI_COMMIT_ON_SUCCESS) ? $stid : false;
     }
 
     protected function select($query,$bucket = array()){
@@ -56,6 +56,10 @@ class OracleConnector{
     }
 
     protected function insert($query,$bucket = array()){
+        return $this->queryexecution($query,$bucket);
+    }
+
+    protected function update($query,$bucket = array()){
         return $this->queryexecution($query,$bucket);
     }
 

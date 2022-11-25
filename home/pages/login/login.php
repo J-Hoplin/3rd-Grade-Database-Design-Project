@@ -1,7 +1,14 @@
 <?php
 include_once "../../common/common.php";
 include_once "../../app/login/member.php";
+include_once dirname(__FILE__)."/../../common/validator.php";
 
+// Invalid access : access after login
+if(strtoupper($_SERVER['REQUEST_METHOD']) == "GET"){
+    if(isset($_SESSION['id']) and isset($_SESSION['username'])){
+        header("Location: ../../index.php");
+    }
+}
 // Form processing
 if(strtoupper($_SERVER['REQUEST_METHOD']) == "POST"){
     $obj = new Member();
@@ -52,7 +59,9 @@ alert("Member with email \''.$email.'\' already exists");
 alert("Complete to enroll!");
 </script>
 <meta http-equiv="refresh" content="0;'.HOME_PATH.'">');
-        }else{
+        }
+        // If invalid form detected
+        else{
             $errmsg = "Some invalid form detected\\n\\n".join("\\n\\n",$errmsg);
             exit('<script>
 alert("'.$errmsg.'");
