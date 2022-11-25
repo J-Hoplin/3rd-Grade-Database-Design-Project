@@ -93,12 +93,6 @@ alert("Member with email \''.$changed_email.'\' already exists");
 </script>
 <meta http-equiv="refresh" content="0; myinfo.php">');
             }
-echo '<script>
-alert("'.$changed_email.'");
-</script>';
-            echo '<script>
-alert("'.$changed_password.'");
-</script>';
             $result = $obj->updateinfomration($_SESSION['id'],$changed_email,$changed_password);
             if(!$result){
                 exit('<script>
