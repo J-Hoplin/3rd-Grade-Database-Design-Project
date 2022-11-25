@@ -1,0 +1,47 @@
+.myInfo-main__column {
+    width: 100%;
+    height: 75%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    background-image: url("https://www.kleague.com/assets/images/about_bg_w.jpg");
+}
+
+.myInfo_main__column__block {
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    font-weight: 600;
+}
+
+.myInfo_main__column__right  {
+    width: 50%;
+}
+
+.myInfo_main__column__block input {
+    width: 500px;
+    height: 30px;
+    margin-bottom: 20px;
+
+}
+
+.myInfo_main__column__btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#myInfo-btn {
+    width: 30%;
+    height: 30px;
+
+    background-color: #001D49;
+    color: white;
+    font-weight: 600;
+}

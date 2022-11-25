@@ -1,8 +1,14 @@
 <?php
-
 include_once "../../common/common.php";
 include_once "../../app/login/member.php";
+include_once dirname(__FILE__)."/../../common/validator.php";
 
+// Invalid access : access after login
+if(strtoupper($_SERVER['REQUEST_METHOD']) == "GET"){
+    if(isset($_SESSION['id']) and isset($_SESSION['username'])){
+        header("Location: ../../index.php");
+    }
+}
 // Form processing
 if(strtoupper($_SERVER['REQUEST_METHOD']) == "POST"){
     $obj = new Member();
@@ -11,18 +17,6 @@ if(strtoupper($_SERVER['REQUEST_METHOD']) == "POST"){
         $username = $_POST['signup']['username'];
         $email = $_POST['signup']['email'];
         $password = $_POST['signup']['password'];
-        /**
-         * Check if email alredy exists
-         *
-         * If exists -> Make enroll failure
-         */
-        $checkexist = $obj->checkemailenrolled($email);
-        if(count($checkexist)){
-            exit('<script>
-alert("Member with email \''.$email.'\' already exists");
-</script>
-<meta http-equiv="refresh" content="0; login.php">');
-        }
         /**
          * error message bucket
          *
@@ -48,12 +42,26 @@ alert("Member with email \''.$email.'\' already exists");
          * PHP에서 자바스크립트에 대해 줄바꿈을 추가해 주고 싶은경우에 \\n 을 써주어야함
          */
         if(!count($errmsg)){
+            /**
+             * Check if email alredy exists
+             *
+             * If exists -> Make enroll failure
+             */
+            $checkexist = $obj->checkemailenrolled($email);
+            if(count($checkexist)){
+                exit('<script>
+alert("Member with email \''.$email.'\' already exists");
+</script>
+<meta http-equiv="refresh" content="0; login.php">');
+            }
             $obj->enroll($username,$email,Member::passwordencrypt($password));
             exit('<script>
 alert("Complete to enroll!");
 </script>
 <meta http-equiv="refresh" content="0;'.HOME_PATH.'">');
-        }else{
+        }
+        // If invalid form detected
+        else{
             $errmsg = "Some invalid form detected\\n\\n".join("\\n\\n",$errmsg);
             exit('<script>
 alert("'.$errmsg.'");
