@@ -15,12 +15,13 @@
 @import "./components/index-searchbar.css";
 @import "./components/teamInfo-main.css";
 @import "./components/myInfo-main.css";
+@import "./components/table-page.css";
 /* Screens */
 
 
 /*font*/
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap");
- 
+
 
 /* Main */
 html {

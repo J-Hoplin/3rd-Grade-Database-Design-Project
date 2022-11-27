@@ -48,6 +48,14 @@ Header::render();
             </tbody>
         </table>
     </div>
+    <div class="table__page">
+        <span><a href="#">1</a></span>
+        <span><a href="#">2</a></span>
+        <span><a href="#">3</a></span>
+        <span><a href="#">4</a></span>
+        <span><a href="#">5</a></span>
+    </div>
+
 </div>
 
 <?php
