@@ -40,8 +40,8 @@ if(strtoupper($_SERVER['REQUEST_METHOD']) == "POST"){
             $obj->closeConnection();
             exit('<script>
 alert("Nothing to change!");
-</script>
-<meta http-equiv="refresh" content="0; myinfo.php">');
+window.location.href = "myinfo.php";
+</script>');
         }
 
         // Check password match
@@ -49,8 +49,8 @@ alert("Nothing to change!");
             $obj->closeConnection();
             exit('<script>
 alert("Password unmatched!");
-</script>
-<meta http-equiv="refresh" content="0; myinfo.php">');
+window.location.href = "myinfo.php";
+</script>');
         }
         $errmsg = array();
         // If email change value entered
@@ -103,8 +103,8 @@ alert("Password unmatched!");
                     $obj->closeConnection();
                     exit('<script>
 alert("Member with email \''.$changed_email.'\' already exists");
-</script>
-<meta http-equiv="refresh" content="0; myinfo.php">');
+window.location.href = "myinfo.php";
+</script>');
                 }
             }
             $result = $obj->updateinfomration($_SESSION['id'],$changed_email,$changed_password);
@@ -112,22 +112,22 @@ alert("Member with email \''.$changed_email.'\' already exists");
                 $obj->closeConnection();
                 exit('<script>
 alert("Oops! Error occured while updating information");
-</script>
-<meta http-equiv="refresh" content="0; myinfo.php">');
+window.location.href = "myinfo.php";
+</script>');
             }
             $obj->closeConnection();
             exit('<script>
 alert("Complete to update information!");
-</script>
-<meta http-equiv="refresh" content="0; myinfo.php">');
+window.location.href = "myinfo.php";
+</script>');
         }
         else{
             $errmsg = "Some invalid form detected\\n\\n".join("\\n\\n",$errmsg);
             $obj->closeConnection();
             exit('<script>
 alert("'.$errmsg.'");
-</script>
-<meta http-equiv="refresh" content="0; myinfo.php">');
+window.location.href = "myinfo.php";
+</script>');
         }
     }
 }

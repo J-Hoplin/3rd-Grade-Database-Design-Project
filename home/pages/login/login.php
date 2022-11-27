@@ -52,15 +52,29 @@ if(strtoupper($_SERVER['REQUEST_METHOD']) == "POST"){
                 $obj->closeConnection();
                 exit('<script>
 alert("Member with email \''.$email.'\' already exists");
-</script>
-<meta http-equiv="refresh" content="0; login.php">');
+window.location.href = "login.php";
+</script>');
             }
+            /**
+             * Check if username already exists
+             *
+             * If exists -> Make enroll failure
+             */
+            $checkexist = $obj->checkusernameenrolled($username);
+            if(count($checkexist)){
+                $obj->closeConnection();
+                exit('<script>
+alert("Member with username \''.$username.'\' already exists");
+window.location.href = "login.php";
+</script>');
+            }
+
             $obj->enroll($username,$email,Member::passwordencrypt($password));
             $obj->closeConnection();
             exit('<script>
 alert("Complete to enroll!");
-</script>
-<meta http-equiv="refresh" content="0;'.HOME_PATH.'">');
+window.location.href = "'.HOME_PATH.'";
+</script>');
         }
         // If invalid form detected
         else{
@@ -68,22 +82,22 @@ alert("Complete to enroll!");
             $obj->closeConnection();
             exit('<script>
 alert("'.$errmsg.'");
-</script>
-<meta http-equiv="refresh" content="0; login.php">');
+window.location.href = "login.php";
+</script>');
         }
     }
     // if it's signin
     elseif (isset($_POST['signin'])){
-        $email = $_POST['signin']['email'];
+        $username = $_POST['signin']['username'];
         $password = $_POST['signin']['password'];
-        $validation = $obj->signinvalidation($email);
+        $validation = $obj->signinvalidation($username);
         // If email not exist
         if(!count($validation)){
             $obj->closeConnection();
             exit('<script>
-alert("Email \''.$email.'\' not exist");
-</script>
-<meta http-equiv="refresh" content="0; login.php">');
+alert("Username \''.$username.'\' not exist");
+window.location.href = "login.php";
+</script>');
         }
 
         if(Member::passwordencrypt($password) == $validation[0]['PASSWORD']){
@@ -92,14 +106,14 @@ alert("Email \''.$email.'\' not exist");
             $obj->closeConnection();
             exit('<script>
 alert("Welcome '.$_SESSION['username'].'!");
-</script>
-<meta http-equiv="refresh" content="0;'.HOME_PATH.'">');
+window.location.href = "'.HOME_PATH.'"
+</script>');
         }else{
             $obj->closeConnection();
             exit('<script>
 alert("Incorrect password!");
-</script>
-<meta http-equiv="refresh" content="0; login.php">');
+window.location.href = "login.php"
+</script>');
         }
     }
 }
@@ -123,7 +137,7 @@ Header::render();
                     <!-- form here : sign up -->
                     <form method="post" action="<?php echo $_SERVER['PHP_SELF'] ?>" class="form">
                         <h2 class="form__title">회원가입</h2>
-                        <input type="text" placeholder="User" name="signup[username]" class="input" />
+                        <input type="text" placeholder="Username" name="signup[username]" class="input" />
                         <input type="text" placeholder="Email" name="signup[email]" class="input" />
                         <input type="password" placeholder="Password" name="signup[password]" class="input" />
                         <input type="submit" class="btn" value="회원가입">
@@ -134,7 +148,7 @@ Header::render();
                     <!-- form here : sing in -->
                     <form method="post" action="<?php echo $_SERVER['PHP_SELF'] ?>" class="form">
                         <h2 class="form__title">로그인</h2>
-                        <input type="text" placeholder="Email" name="signin[email]" class="input" />
+                        <input type="text" placeholder="Username" name="signin[username]" class="input" />
                         <input type="password" placeholder="Password" name="signin[password]" class="input" />
                         <input type="submit" class="btn" value="로그인"/>
                     </form>

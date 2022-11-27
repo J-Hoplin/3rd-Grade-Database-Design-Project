@@ -26,6 +26,14 @@ class Member extends OracleConnector {
         return $this->insert($sql,$bucket);
     }
 
+    public function checkusernameenrolled($username){
+        $sql = "SELECT email FROM member where username=:username";
+        $bucket = array(
+            ":username"=>$username
+        );
+        return $this->select($sql,$bucket);
+    }
+
     public function checkemailenrolled($email){
         // Use in signup
         $sql = "SELECT email FROM member where email=:email ";
@@ -35,11 +43,11 @@ class Member extends OracleConnector {
         return $this->select($sql,$bucket);
     }
 
-    public function signinvalidation($email){
+    public function signinvalidation($username){
         // Use in sigin
-        $sql = "SELECT id,username,password FROM member where email=:email";
+        $sql = "SELECT id,username,password FROM member where username=:username";
         $bucket = array(
-            ":email"=>$email
+            ":username"=>$username
         );
         return $this->select($sql,$bucket);
     }

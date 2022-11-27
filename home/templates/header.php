@@ -73,7 +73,7 @@ class Header implements template_header_footer {
         }else{
             $state = '
 <span>
-Welcome : '.$_SESSION['username'].'_'.$_SESSION['id'].'
+Welcome '.$_SESSION['username'].'!
 </span>
 <span>
 <a href="'.HOME_PATH.'/pages/member/myinfo.php">
@@ -97,15 +97,15 @@ class HeaderWithAuth extends Header{
         if(!isset($_SESSION['id']) or !isset($_SESSION['username'])){
             echo '<script>
 alert("로그인이 필요합니다!");
-</script>
-<meta http-equiv="refresh" content="0,'.HOME_PATH.'/pages/login/login.php" >';
+window.location.href ="'.HOME_PATH.'/pages/login/login.php"
+</script>';
         }
 
         $username = $_SESSION['username'];
         $userid = $_SESSION['id'];
         echo self::buildheader('
 <span>
-Welcome : '.$_SESSION['username'].'_'.$_SESSION['id'].'
+Welcome '.$_SESSION['username'].'!
 </span>
 <span>
 <a href="'.HOME_PATH.'/pages/member/myinfo.php">

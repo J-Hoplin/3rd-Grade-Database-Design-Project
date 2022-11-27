@@ -2,7 +2,7 @@
 
 include_once "../../common/common.php";
 
-HeaderWithAuth::render();
+Header::render();
 ?>
 <div class="team-main">
     <?php
