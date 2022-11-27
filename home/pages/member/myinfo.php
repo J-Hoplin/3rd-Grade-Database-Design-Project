@@ -9,16 +9,25 @@ include_once dirname(__FILE__)."/../../common/validator.php";
  *
  * complete default field of inputs
  */
-$myinfo = new Myinfo();
-
-$info = $myinfo->getinformation($_SESSION['id']);
-$email = $info[0]['EMAIL'];
-$pw = $info[0]['PASSWORD'];
 
 
+// GET
+if(strtoupper($_SERVER['REQUEST_METHOD']) == "GET"){
+    $myinfo = new Myinfo();
+
+    $info = $myinfo->getinformation($_SESSION['id']);
+    $email = $info[0]['EMAIL'];
+    $pw = $info[0]['PASSWORD'];
+    $myinfo->closeConnection();
+}
+
+// POST
 if(strtoupper($_SERVER['REQUEST_METHOD']) == "POST"){
     $obj = new Myinfo();
 
+    $info = $obj->getinformation($_SESSION['id']);
+    $email = $info[0]['EMAIL'];
+    $pw = $info[0]['PASSWORD'];
 
     // Varaiable : for changed values
     $changed_email = "";
@@ -28,6 +37,7 @@ if(strtoupper($_SERVER['REQUEST_METHOD']) == "POST"){
     if(isset($_POST['change'])){
         // If nothing to change
         if(!$_POST['change']['email'] and !$_POST['change']['password']){
+            $obj->closeConnection();
             exit('<script>
 alert("Nothing to change!");
 </script>
@@ -36,6 +46,7 @@ alert("Nothing to change!");
 
         // Check password match
         if(strcmp($pw,Myinfo::passwordencrypt($_POST['change']['previouspassword']))){
+            $obj->closeConnection();
             exit('<script>
 alert("Password unmatched!");
 </script>
@@ -86,20 +97,25 @@ alert("Password unmatched!");
             // return 1 if string1 is greater than string2
 
             // Check if password is matched
-            $checkexist = $obj->checkemailenrolled($changed_email);
-            if(count($checkexist)){
-                exit('<script>
+            if($_POST['change']['email']){
+                $checkexist = $obj->checkemailenrolled($changed_email);
+                if(count($checkexist)){
+                    $obj->closeConnection();
+                    exit('<script>
 alert("Member with email \''.$changed_email.'\' already exists");
 </script>
 <meta http-equiv="refresh" content="0; myinfo.php">');
+                }
             }
             $result = $obj->updateinfomration($_SESSION['id'],$changed_email,$changed_password);
             if(!$result){
+                $obj->closeConnection();
                 exit('<script>
 alert("Oops! Error occured while updating information");
 </script>
 <meta http-equiv="refresh" content="0; myinfo.php">');
             }
+            $obj->closeConnection();
             exit('<script>
 alert("Complete to update information!");
 </script>
@@ -107,6 +123,7 @@ alert("Complete to update information!");
         }
         else{
             $errmsg = "Some invalid form detected\\n\\n".join("\\n\\n",$errmsg);
+            $obj->closeConnection();
             exit('<script>
 alert("'.$errmsg.'");
 </script>
@@ -147,10 +164,11 @@ HeaderWithAuth::render();
             </div>
             <div class="myInfo_main__column__block">
                 <div class="myInfo_main__column__right"><span>현재 비밀번호(필수):</span></div>
-                <input id="myInfo-pw" type="password" name="change[previouspassword]" placeholder="password" autocomplete="off">
+                <input id="myInfo-pw" type="password" name="change[previouspassword]" placeholder="password" autocomplete="off" required>
             </div>
             <div class="myInfo_main__column__btn">
                 <input id="myInfo-btn" type="submit" value="변경" autocomplete="off">
+                <input id="myInfo-btn" type="submit" value="탈퇴" autocomplete="off">
             </div>
         </form>
     </div>

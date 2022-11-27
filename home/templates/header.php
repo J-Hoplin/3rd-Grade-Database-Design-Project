@@ -29,6 +29,7 @@ class Header implements template_header_footer {
 <head>
     <script src="https://kit.fontawesome.com/60c73f104d.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="'.CSS_PATH.'/styles.css"/>
+    <link rel="icon" href="https://kleague-admin-test.s3.ap-northeast-2.amazonaws.com/v1/about/K리그%20엠블럼_20220104_113757.png">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>K LEAGUE DATA</title>

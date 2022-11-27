@@ -49,12 +49,14 @@ if(strtoupper($_SERVER['REQUEST_METHOD']) == "POST"){
              */
             $checkexist = $obj->checkemailenrolled($email);
             if(count($checkexist)){
+                $obj->closeConnection();
                 exit('<script>
 alert("Member with email \''.$email.'\' already exists");
 </script>
 <meta http-equiv="refresh" content="0; login.php">');
             }
             $obj->enroll($username,$email,Member::passwordencrypt($password));
+            $obj->closeConnection();
             exit('<script>
 alert("Complete to enroll!");
 </script>
@@ -63,6 +65,7 @@ alert("Complete to enroll!");
         // If invalid form detected
         else{
             $errmsg = "Some invalid form detected\\n\\n".join("\\n\\n",$errmsg);
+            $obj->closeConnection();
             exit('<script>
 alert("'.$errmsg.'");
 </script>
@@ -76,6 +79,7 @@ alert("'.$errmsg.'");
         $validation = $obj->signinvalidation($email);
         // If email not exist
         if(!count($validation)){
+            $obj->closeConnection();
             exit('<script>
 alert("Email \''.$email.'\' not exist");
 </script>
@@ -85,11 +89,13 @@ alert("Email \''.$email.'\' not exist");
         if(Member::passwordencrypt($password) == $validation[0]['PASSWORD']){
             $_SESSION['id'] = $validation[0]['ID'];
             $_SESSION['username'] = $validation[0]['USERNAME'];
+            $obj->closeConnection();
             exit('<script>
 alert("Welcome '.$_SESSION['username'].'!");
 </script>
 <meta http-equiv="refresh" content="0;'.HOME_PATH.'">');
         }else{
+            $obj->closeConnection();
             exit('<script>
 alert("Incorrect password!");
 </script>
