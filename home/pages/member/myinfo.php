@@ -38,19 +38,13 @@ if(strtoupper($_SERVER['REQUEST_METHOD']) == "POST"){
         // If nothing to change
         if(!$_POST['change']['email'] and !$_POST['change']['password']){
             $obj->closeConnection();
-            exit('<script>
-alert("Nothing to change!");
-window.location.href = "myinfo.php";
-</script>');
+            Redirect::redirectionWithAlert("Nothing to change!",basename(__FILE__));
         }
 
         // Check password match
         if(strcmp($pw,Myinfo::passwordencrypt($_POST['change']['previouspassword']))){
             $obj->closeConnection();
-            exit('<script>
-alert("Password unmatched!");
-window.location.href = "myinfo.php";
-</script>');
+            Redirect::redirectionWithAlert("Password unmatched!",basename(__FILE__));
         }
         $errmsg = array();
         // If email change value entered
@@ -101,33 +95,21 @@ window.location.href = "myinfo.php";
                 $checkexist = $obj->checkemailenrolled($changed_email);
                 if(count($checkexist)){
                     $obj->closeConnection();
-                    exit('<script>
-alert("Member with email \''.$changed_email.'\' already exists");
-window.location.href = "myinfo.php";
-</script>');
+                    Redirect::redirectionWithAlert("Member with email $changed_email already exists",basename(__FILE__));
                 }
             }
             $result = $obj->updateinfomration($_SESSION['id'],$changed_email,$changed_password);
             if(!$result){
                 $obj->closeConnection();
-                exit('<script>
-alert("Oops! Error occured while updating information");
-window.location.href = "myinfo.php";
-</script>');
+                Redirect::redirectionWithAlert("Oops! Error occured while updating information",basename(__FILE__));
             }
             $obj->closeConnection();
-            exit('<script>
-alert("Complete to update information!");
-window.location.href = "myinfo.php";
-</script>');
+            Redirect::redirectionWithAlert("Complete to update information!",basename(__FILE__));
         }
         else{
             $errmsg = "Some invalid form detected\\n\\n".join("\\n\\n",$errmsg);
             $obj->closeConnection();
-            exit('<script>
-alert("'.$errmsg.'");
-window.location.href = "myinfo.php";
-</script>');
+            Redirect::redirectionWithAlert($errmsg,basename(__FILE__));
         }
     }
 }

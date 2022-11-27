@@ -50,10 +50,7 @@ if(strtoupper($_SERVER['REQUEST_METHOD']) == "POST"){
             $checkexist = $obj->checkemailenrolled($email);
             if(count($checkexist)){
                 $obj->closeConnection();
-                exit('<script>
-alert("Member with email \''.$email.'\' already exists");
-window.location.href = "login.php";
-</script>');
+                Redirect::redirectionWithAlert("Member with email $email already exists",basename(__FILE__));
             }
             /**
              * Check if username already exists
@@ -63,27 +60,18 @@ window.location.href = "login.php";
             $checkexist = $obj->checkusernameenrolled($username);
             if(count($checkexist)){
                 $obj->closeConnection();
-                exit('<script>
-alert("Member with username \''.$username.'\' already exists");
-window.location.href = "login.php";
-</script>');
+                Redirect::redirectionWithAlert("Member with username $username already exists",basename(__FILE__));
             }
 
             $obj->enroll($username,$email,Member::passwordencrypt($password));
             $obj->closeConnection();
-            exit('<script>
-alert("Complete to enroll!");
-window.location.href = "'.HOME_PATH.'";
-</script>');
+            Redirect::redirectionWithAlert("Complete to enroll!",HOME_PATH);
         }
         // If invalid form detected
         else{
             $errmsg = "Some invalid form detected\\n\\n".join("\\n\\n",$errmsg);
             $obj->closeConnection();
-            exit('<script>
-alert("'.$errmsg.'");
-window.location.href = "login.php";
-</script>');
+            Redirect::redirectionWithAlert($errmsg,basename(__FILE__));
         }
     }
     // if it's signin
@@ -94,26 +82,17 @@ window.location.href = "login.php";
         // If email not exist
         if(!count($validation)){
             $obj->closeConnection();
-            exit('<script>
-alert("Username \''.$username.'\' not exist");
-window.location.href = "login.php";
-</script>');
+            Redirect::redirectionWithAlert("Username $username not exist",basename(__FILE__));
         }
 
         if(Member::passwordencrypt($password) == $validation[0]['PASSWORD']){
             $_SESSION['id'] = $validation[0]['ID'];
             $_SESSION['username'] = $validation[0]['USERNAME'];
             $obj->closeConnection();
-            exit('<script>
-alert("Welcome '.$_SESSION['username'].'!");
-window.location.href = "'.HOME_PATH.'"
-</script>');
+            Redirect::redirectionWithAlert("Welcome {$_SESSION['username']}!",HOME_PATH);
         }else{
             $obj->closeConnection();
-            exit('<script>
-alert("Incorrect password!");
-window.location.href = "login.php"
-</script>');
+            Redirect::redirectionWithAlert("Incorrect password!",basename(__FILE__));
         }
     }
 }
