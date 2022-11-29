@@ -1,0 +1,9 @@
+.delete {
+    width: 100%;
+    height: 100%;
+}
+
+.delete input {
+    text-align: center;
+    width: 30%;
+}

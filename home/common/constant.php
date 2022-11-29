@@ -3,6 +3,7 @@
 include_once __DIR__."/../../getprojectpath.php";
 
 /**
+ *
  * Define some required constant variables
  * php constants become global constant while script is running
  *

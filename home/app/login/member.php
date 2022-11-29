@@ -8,10 +8,6 @@ class Member extends OracleConnector {
         parent::__construct();
     }
 
-    public static function passwordencrypt($password){
-        return base64_encode(hash('sha256',$password, true));
-    }
-
     public function enroll($username,$email,$password)
     {
         // Use in signup

@@ -24,7 +24,9 @@ class OracleConnector{
             trigger_error(htmlentities($e['message'],ENT_QUOTES),E_USER_ERROR);
         }
     }
-
+    public static function passwordencrypt($password){
+        return base64_encode(hash('sha256',$password, true));
+    }
     /**
      * @return void
      * make commit to app
@@ -85,6 +87,10 @@ class OracleConnector{
     }
 
     protected function update($query,$bucket = array()){
+        return $this->queryexecution($query,$bucket);
+    }
+
+    protected function delete($query,$bucket = array()){
         return $this->queryexecution($query,$bucket);
     }
 

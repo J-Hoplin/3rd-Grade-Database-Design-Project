@@ -9,10 +9,6 @@ class Myinfo extends OracleConnector
         parent::__construct();
     }
 
-    public static function passwordencrypt($password){
-        return base64_encode(hash('sha256',$password, true));
-    }
-
     public function checkemailenrolled($email){
         // Use in signup
         $sql = "SELECT email FROM member where email=:email ";

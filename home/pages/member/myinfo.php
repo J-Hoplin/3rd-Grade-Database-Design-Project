@@ -151,7 +151,7 @@ HeaderWithAuth::render();
             </div>
             <div class="myInfo_main__column__btn">
                 <input id="myInfo-btn" type="submit" value="변경" autocomplete="off">
-                <input id="myInfo-btn" type="submit" value="탈퇴" autocomplete="off">
+                <input id="withdraw-btn" type="button" value="탈퇴하기" autocomplete="off" onclick="window.location.href='<?php echo "withdraw.php"?>'">
             </div>
         </form>
     </div>
