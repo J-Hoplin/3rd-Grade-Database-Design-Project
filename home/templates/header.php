@@ -10,7 +10,7 @@ only header
 
 // All of pages require session array
 session_start();
-include_once dirname(__FILE__)."/../common/constant.php";
+include_once dirname(__FILE__)."/../common/common.php";
 include_once "template.php";
 
 class Header implements template_header_footer {
@@ -68,7 +68,7 @@ class Header implements template_header_footer {
         $state = "";
         if(!isset($_SESSION['id']) or !isset($_SESSION['username'])){
             $state = '<span>
-<a href="'.HOME_PATH.'/pages/login/login.php">login</a>
+<a href="'.HOME_PATH.'/pages/login/login.php">Login</a>
 </span>';
         }else{
             $state = '
@@ -95,10 +95,7 @@ class HeaderWithAuth extends Header{
     public static function render()
     {
         if(!isset($_SESSION['id']) or !isset($_SESSION['username'])){
-            echo '<script>
-alert("로그인이 필요합니다!");
-window.location.href ="'.HOME_PATH.'/pages/login/login.php"
-</script>';
+            Redirect::redirectionWithAlert("로그인이 필요합니다!",HOME_PATH.'/pages/login/login.php');
         }
 
         $username = $_SESSION['username'];

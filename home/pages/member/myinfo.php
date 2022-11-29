@@ -99,6 +99,7 @@ if(strtoupper($_SERVER['REQUEST_METHOD']) == "POST"){
                 }
             }
             $result = $obj->updateinfomration($_SESSION['id'],$changed_email,$changed_password);
+            // If update fail response from dbms
             if(!$result){
                 $obj->closeConnection();
                 Redirect::redirectionWithAlert("Oops! Error occured while updating information",basename(__FILE__));
