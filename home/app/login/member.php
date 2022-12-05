@@ -8,6 +8,14 @@ class Member extends OracleConnector {
         parent::__construct();
     }
 
+    /**
+     * @param $username
+     * @param $email
+     * @param $password
+     * @return false|resource
+     *
+     * Make an member enrollment
+     */
     public function enroll($username,$email,$password)
     {
         // Use in signup
@@ -22,6 +30,12 @@ class Member extends OracleConnector {
         return $this->insert($sql,$bucket);
     }
 
+    /**
+     * @param $username
+     * @return array|false
+     *
+     * Check if username already in used
+     */
     public function checkusernameenrolled($username){
         $sql = "SELECT email FROM member where username=:username";
         $bucket = array(
@@ -30,6 +44,12 @@ class Member extends OracleConnector {
         return $this->select($sql,$bucket);
     }
 
+    /**
+     * @param $email
+     * @return array|false
+     *
+     * Check if email already in used
+     */
     public function checkemailenrolled($email){
         // Use in signup
         $sql = "SELECT email FROM member where email=:email ";
@@ -39,6 +59,12 @@ class Member extends OracleConnector {
         return $this->select($sql,$bucket);
     }
 
+    /**
+     * @param $username
+     * @return array|false
+     *
+     * Returns some values that require while signin
+     */
     public function signinvalidation($username){
         // Use in sigin
         $sql = "SELECT id,username,password FROM member where username=:username";

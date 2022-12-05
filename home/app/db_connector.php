@@ -4,6 +4,8 @@
  * Should close connection after off the page
  */
 
+include_once dirname(__FILE__)."/../common/constant.php";
+
 class OracleConnector{
     private $db;
     private $connect;
@@ -81,6 +83,8 @@ class OracleConnector{
         oci_fetch_all($stid,$result,0,-1,OCI_FETCHSTATEMENT_BY_ROW);
         return $result;
     }
+
+
 
     protected function insert($query,$bucket = array()){
         return $this->queryexecution($query,$bucket);

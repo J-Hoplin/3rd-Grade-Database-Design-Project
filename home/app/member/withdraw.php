@@ -9,6 +9,12 @@ class Withdraw extends OracleConnector
         parent::__construct();
     }
 
+    /**
+     * @param $id
+     * @return array|false
+     *
+     * Get user's password
+     */
     public function getpassword($id){
         $sql = "SELECT password FROM member where id=:id";
         $bucket = array(
@@ -17,6 +23,12 @@ class Withdraw extends OracleConnector
         return $this->select($sql,$bucket);
     }
 
+    /**
+     * @param $id
+     * @return false|resource
+     *
+     * Delete user
+     */
     public function deleteuser($id){
         $sql = "DELETE FROM member where id=:id";
         $bucket = array(

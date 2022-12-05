@@ -18,6 +18,14 @@ alert("'.$message.'");
 window.location.href = "'.$location.'";
 </script>');
     }
+
+    public static function redirectHome($message = ""){
+        $message = $message ? $message : "Something crushed while processing";
+        exit('<script>
+alert("'.$message.'");
+window.location.href = "'.HOME_PATH.'";
+</script>');
+    }
 }
 
 ?>

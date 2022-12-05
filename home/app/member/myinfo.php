@@ -9,6 +9,12 @@ class Myinfo extends OracleConnector
         parent::__construct();
     }
 
+    /**
+     * @param $email
+     * @return array|false
+     *
+     * Check if email already enrolled
+     */
     public function checkemailenrolled($email){
         // Use in signup
         $sql = "SELECT email FROM member where email=:email ";
@@ -18,6 +24,12 @@ class Myinfo extends OracleConnector
         return $this->select($sql,$bucket);
     }
 
+    /**
+     * @param $id
+     * @return array|false
+     *
+     * Get member's information
+     */
     public function getinformation($id)
     {
         // Use in mypage
@@ -28,6 +40,14 @@ class Myinfo extends OracleConnector
         return $this->select($sql,$bucket);
     }
 
+    /**
+     * @param $id
+     * @param $email
+     * @param $password
+     * @return false|resource
+     *
+     * update user's information
+     */
     public function updateinfomration($id,$email,$password)
     {
         // Use in mypage
