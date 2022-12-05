@@ -1,0 +1,40 @@
+.table__page {
+    width: 100%;
+    height: 20%;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.table__page span {
+    width: 30px;
+    height: 30px;
+    border: 1px solid black;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.table__page__margin__right{
+    margin: 0px 5px 0px 0px;
+}
+
+.table__page__margin__left{
+    margin: 0px 0px 0px 5px;
+}
+
+/*
+해당 페이지 선택시 색깔 변경 css
+일단은 아래 첫번째 페이지만 색깔 적용
+*/
+/*.table__page span:first-child{*/
+/*    background-color: #00529E;*/
+/*    color: white;*/
+/*}*/
+.page__now{
+    background-color: #00529E;
+    color: white;
+}

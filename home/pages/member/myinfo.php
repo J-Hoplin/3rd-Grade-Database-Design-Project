@@ -9,16 +9,25 @@ include_once dirname(__FILE__)."/../../common/validator.php";
  *
  * complete default field of inputs
  */
-$myinfo = new Myinfo();
-
-$info = $myinfo->getinformation($_SESSION['id']);
-$email = $info[0]['EMAIL'];
-$pw = $info[0]['PASSWORD'];
 
 
+// GET
+if(strtoupper($_SERVER['REQUEST_METHOD']) == "GET"){
+    $myinfo = new Myinfo();
+
+    $info = $myinfo->getinformation($_SESSION['id']);
+    $email = $info[0]['EMAIL'];
+    $pw = $info[0]['PASSWORD'];
+    $myinfo->closeConnection();
+}
+
+// POST
 if(strtoupper($_SERVER['REQUEST_METHOD']) == "POST"){
     $obj = new Myinfo();
 
+    $info = $obj->getinformation($_SESSION['id']);
+    $email = $info[0]['EMAIL'];
+    $pw = $info[0]['PASSWORD'];
 
     // Varaiable : for changed values
     $changed_email = "";
@@ -28,18 +37,14 @@ if(strtoupper($_SERVER['REQUEST_METHOD']) == "POST"){
     if(isset($_POST['change'])){
         // If nothing to change
         if(!$_POST['change']['email'] and !$_POST['change']['password']){
-            exit('<script>
-alert("Nothing to change!");
-</script>
-<meta http-equiv="refresh" content="0; myinfo.php">');
+            $obj->closeConnection();
+            Redirect::redirectionWithAlert("Nothing to change!",basename(__FILE__));
         }
 
         // Check password match
         if(strcmp($pw,Myinfo::passwordencrypt($_POST['change']['previouspassword']))){
-            exit('<script>
-alert("Password unmatched!");
-</script>
-<meta http-equiv="refresh" content="0; myinfo.php">');
+            $obj->closeConnection();
+            Redirect::redirectionWithAlert("Password unmatched!",basename(__FILE__));
         }
         $errmsg = array();
         // If email change value entered
@@ -86,31 +91,26 @@ alert("Password unmatched!");
             // return 1 if string1 is greater than string2
 
             // Check if password is matched
-            $checkexist = $obj->checkemailenrolled($changed_email);
-            if(count($checkexist)){
-                exit('<script>
-alert("Member with email \''.$changed_email.'\' already exists");
-</script>
-<meta http-equiv="refresh" content="0; myinfo.php">');
+            if($_POST['change']['email']){
+                $checkexist = $obj->checkemailenrolled($changed_email);
+                if(count($checkexist)){
+                    $obj->closeConnection();
+                    Redirect::redirectionWithAlert("Member with email $changed_email already exists",basename(__FILE__));
+                }
             }
             $result = $obj->updateinfomration($_SESSION['id'],$changed_email,$changed_password);
+            // If update fail response from dbms
             if(!$result){
-                exit('<script>
-alert("Oops! Error occured while updating information");
-</script>
-<meta http-equiv="refresh" content="0; myinfo.php">');
+                $obj->closeConnection();
+                Redirect::redirectionWithAlert("Oops! Error occured while updating information",basename(__FILE__));
             }
-            exit('<script>
-alert("Complete to update information!");
-</script>
-<meta http-equiv="refresh" content="0; myinfo.php">');
+            $obj->closeConnection();
+            Redirect::redirectionWithAlert("Complete to update information!",basename(__FILE__));
         }
         else{
             $errmsg = "Some invalid form detected\\n\\n".join("\\n\\n",$errmsg);
-            exit('<script>
-alert("'.$errmsg.'");
-</script>
-<meta http-equiv="refresh" content="0; myinfo.php">');
+            $obj->closeConnection();
+            Redirect::redirectionWithAlert($errmsg,basename(__FILE__));
         }
     }
 }
@@ -147,10 +147,11 @@ HeaderWithAuth::render();
             </div>
             <div class="myInfo_main__column__block">
                 <div class="myInfo_main__column__right"><span>현재 비밀번호(필수):</span></div>
-                <input id="myInfo-pw" type="password" name="change[previouspassword]" placeholder="password" autocomplete="off">
+                <input id="myInfo-pw" type="password" name="change[previouspassword]" placeholder="password" autocomplete="off" required>
             </div>
             <div class="myInfo_main__column__btn">
                 <input id="myInfo-btn" type="submit" value="변경" autocomplete="off">
+                <input id="withdraw-btn" type="button" value="탈퇴하기" autocomplete="off" onclick="window.location.href='<?php echo "withdraw.php"?>'">
             </div>
         </form>
     </div>

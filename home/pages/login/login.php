@@ -49,51 +49,50 @@ if(strtoupper($_SERVER['REQUEST_METHOD']) == "POST"){
              */
             $checkexist = $obj->checkemailenrolled($email);
             if(count($checkexist)){
-                exit('<script>
-alert("Member with email \''.$email.'\' already exists");
-</script>
-<meta http-equiv="refresh" content="0; login.php">');
+                $obj->closeConnection();
+                Redirect::redirectionWithAlert("Member with email $email already exists",basename(__FILE__));
             }
+            /**
+             * Check if username already exists
+             *
+             * If exists -> Make enroll failure
+             */
+            $checkexist = $obj->checkusernameenrolled($username);
+            if(count($checkexist)){
+                $obj->closeConnection();
+                Redirect::redirectionWithAlert("Member with username $username already exists",basename(__FILE__));
+            }
+
             $obj->enroll($username,$email,Member::passwordencrypt($password));
-            exit('<script>
-alert("Complete to enroll!");
-</script>
-<meta http-equiv="refresh" content="0;'.HOME_PATH.'">');
+            $obj->closeConnection();
+            Redirect::redirectionWithAlert("Complete to enroll!",HOME_PATH);
         }
         // If invalid form detected
         else{
             $errmsg = "Some invalid form detected\\n\\n".join("\\n\\n",$errmsg);
-            exit('<script>
-alert("'.$errmsg.'");
-</script>
-<meta http-equiv="refresh" content="0; login.php">');
+            $obj->closeConnection();
+            Redirect::redirectionWithAlert($errmsg,basename(__FILE__));
         }
     }
     // if it's signin
     elseif (isset($_POST['signin'])){
-        $email = $_POST['signin']['email'];
+        $username = $_POST['signin']['username'];
         $password = $_POST['signin']['password'];
-        $validation = $obj->signinvalidation($email);
+        $validation = $obj->signinvalidation($username);
         // If email not exist
         if(!count($validation)){
-            exit('<script>
-alert("Email \''.$email.'\' not exist");
-</script>
-<meta http-equiv="refresh" content="0; login.php">');
+            $obj->closeConnection();
+            Redirect::redirectionWithAlert("Username $username not exist",basename(__FILE__));
         }
 
         if(Member::passwordencrypt($password) == $validation[0]['PASSWORD']){
             $_SESSION['id'] = $validation[0]['ID'];
             $_SESSION['username'] = $validation[0]['USERNAME'];
-            exit('<script>
-alert("Welcome '.$_SESSION['username'].'!");
-</script>
-<meta http-equiv="refresh" content="0;'.HOME_PATH.'">');
+            $obj->closeConnection();
+            Redirect::redirectionWithAlert("Welcome {$_SESSION['username']}!",HOME_PATH);
         }else{
-            exit('<script>
-alert("Incorrect password!");
-</script>
-<meta http-equiv="refresh" content="0; login.php">');
+            $obj->closeConnection();
+            Redirect::redirectionWithAlert("Incorrect password!",basename(__FILE__));
         }
     }
 }
@@ -117,7 +116,7 @@ Header::render();
                     <!-- form here : sign up -->
                     <form method="post" action="<?php echo $_SERVER['PHP_SELF'] ?>" class="form">
                         <h2 class="form__title">회원가입</h2>
-                        <input type="text" placeholder="User" name="signup[username]" class="input" />
+                        <input type="text" placeholder="Username" name="signup[username]" class="input" />
                         <input type="text" placeholder="Email" name="signup[email]" class="input" />
                         <input type="password" placeholder="Password" name="signup[password]" class="input" />
                         <input type="submit" class="btn" value="회원가입">
@@ -128,7 +127,7 @@ Header::render();
                     <!-- form here : sing in -->
                     <form method="post" action="<?php echo $_SERVER['PHP_SELF'] ?>" class="form">
                         <h2 class="form__title">로그인</h2>
-                        <input type="text" placeholder="Email" name="signin[email]" class="input" />
+                        <input type="text" placeholder="Username" name="signin[username]" class="input" />
                         <input type="password" placeholder="Password" name="signin[password]" class="input" />
                         <input type="submit" class="btn" value="로그인"/>
                     </form>

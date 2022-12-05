@@ -1,32 +1,61 @@
 <?php
 
-class OracleConnector{
-    protected $db;
-    protected $connect;
+/**
+ * Should close connection after off the page
+ */
 
-    // constructor
+include_once dirname(__FILE__)."/../common/constant.php";
+
+class OracleConnector{
+    private $db;
+    private $connect;
+    private $config;
+
+    // constructor : prevent OracleConnector to use as instance directly
     protected function __construct()
     {
-        $config = parse_ini_file(dirname(__FILE__)."/../assets/config/config.ini");
-        $this->db = '(DESCRIPTION= (ADDRESS_LIST= (ADDRESS = (PROTOCOL ='.$config['protocol'].')(HOST = '.$config['host'].')(PORT = '.$config['port'].'))) (CONNECT_DATA = (SID = orcl)))';
-        $this->connect = oci_connect($config['username'],$config['password'],$this->db);
+        $this->config = parse_ini_file(dirname(__FILE__)."/../assets/config/config.ini");
+        $this->db = '(DESCRIPTION= (ADDRESS_LIST= (ADDRESS = (PROTOCOL ='.$this->config['protocol'].')(HOST = '.$this->config['host'].')(PORT = '.$this->config['port'].'))) (CONNECT_DATA = (SID = orcl)))';
+        $this->makeConnect();
+    }
+
+    private function makeConnect(){
+        $this->connect = oci_connect($this->config['username'],$this->config['password'],$this->db);
         if(!$this->connect){
             $e=oci_error();
             trigger_error(htmlentities($e['message'],ENT_QUOTES),E_USER_ERROR);
         }
     }
+    public static function passwordencrypt($password){
+        return base64_encode(hash('sha256',$password, true));
+    }
+    /**
+     * @return void
+     * make commit to app
+     */
+    protected function commitDB(){
+        oci_commit($this->connect);
+    }
+
+    /**
+     * @return void
+     *
+     * close db connection
+     */
+    public function closeConnection(){
+        oci_close($this->connect);
+    }
 
     /**
      * @param $query
-     * @return false
-     *
+     * @param $bucket
+     * @return false|resource
      * execute SQL Query
      *
      * return array type
      *
      * each array key refers to column of app
      */
-
     private function queryexecution($query,$bucket){
         $stid = oci_parse($this->connect,$query);
         /**
@@ -55,6 +84,8 @@ class OracleConnector{
         return $result;
     }
 
+
+
     protected function insert($query,$bucket = array()){
         return $this->queryexecution($query,$bucket);
     }
@@ -63,21 +94,8 @@ class OracleConnector{
         return $this->queryexecution($query,$bucket);
     }
 
-    /**
-     * @return void
-     * make commit to app
-     */
-    protected function commitDB(){
-        oci_commit($this->connect);
-    }
-
-    /**
-     * @return void
-     *
-     * close db connection
-     */
-    public function closeConnection(){
-        oci_close($this->connect);
+    protected function delete($query,$bucket = array()){
+        return $this->queryexecution($query,$bucket);
     }
 
 }

@@ -40,8 +40,20 @@
 #myInfo-btn {
     width: 30%;
     height: 30px;
+    margin: 0px 10px 0px;
 
     background-color: #001D49;
+    color: white;
+    font-weight: 600;
+}
+
+
+#withdraw-btn {
+    width: 30%;
+    height: 30px;
+    margin: 0px 10px 0px;
+
+    background-color: #E50B12;
     color: white;
     font-weight: 600;
 }

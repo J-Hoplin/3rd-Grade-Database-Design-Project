@@ -10,7 +10,7 @@ only header
 
 // All of pages require session array
 session_start();
-include_once dirname(__FILE__)."/../common/constant.php";
+include_once dirname(__FILE__)."/../common/common.php";
 include_once "template.php";
 
 class Header implements template_header_footer {
@@ -29,6 +29,7 @@ class Header implements template_header_footer {
 <head>
     <script src="https://kit.fontawesome.com/60c73f104d.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="'.CSS_PATH.'/styles.css"/>
+    <link rel="icon" href="https://kleague-admin-test.s3.ap-northeast-2.amazonaws.com/v1/about/K리그%20엠블럼_20220104_113757.png">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>K LEAGUE DATA</title>
@@ -67,12 +68,12 @@ class Header implements template_header_footer {
         $state = "";
         if(!isset($_SESSION['id']) or !isset($_SESSION['username'])){
             $state = '<span>
-<a href="'.HOME_PATH.'/pages/login/login.php">login</a>
+<a href="'.HOME_PATH.'/pages/login/login.php">Login</a>
 </span>';
         }else{
             $state = '
 <span>
-Welcome : '.$_SESSION['username'].'_'.$_SESSION['id'].'
+Welcome '.$_SESSION['username'].'!
 </span>
 <span>
 <a href="'.HOME_PATH.'/pages/member/myinfo.php">
@@ -94,17 +95,14 @@ class HeaderWithAuth extends Header{
     public static function render()
     {
         if(!isset($_SESSION['id']) or !isset($_SESSION['username'])){
-            echo '<script>
-alert("로그인이 필요합니다!");
-</script>
-<meta http-equiv="refresh" content="0,'.HOME_PATH.'/pages/login/login.php" >';
+            Redirect::redirectionWithAlert("로그인이 필요합니다!",HOME_PATH.'/pages/login/login.php');
         }
 
         $username = $_SESSION['username'];
         $userid = $_SESSION['id'];
         echo self::buildheader('
 <span>
-Welcome : '.$_SESSION['username'].'_'.$_SESSION['id'].'
+Welcome '.$_SESSION['username'].'!
 </span>
 <span>
 <a href="'.HOME_PATH.'/pages/member/myinfo.php">
