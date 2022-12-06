@@ -4,7 +4,7 @@ include_once "../../app/player/player.php";
 
 # If player_id not given -> Redirect Home
 if(!isset($_GET['player_id'])){
-    Redirect::redirectHome("Invalid request! User id not found");
+    Redirect::redirectHome("Invalid request! User id not given");
 }
 # Get player id
 $player_id = $_GET['player_id'];
@@ -16,7 +16,7 @@ $player_info = $obj ->getplayerinfo_individual($player_id);
 # If request with invalid player id -> Redirect Home
 if(!$player_info){
     $obj->closeConnection();
-    Redirect::redirectHome("Invalid request! Invalid player id");
+    Redirect::redirectHome("Invalid request! Player id not exist");
 }
 
 $player_info = $player_info[0];
@@ -41,7 +41,7 @@ HeaderWithAuth::render();
 
 <div class="team-main">
     <?php
-    title_player_specify::title();
+    title_player::title_specify($english_name);
     ?>
 
     <div class="playerInfo-column">

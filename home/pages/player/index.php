@@ -17,10 +17,9 @@ if($total_players % PAGINATION){
 
 // If page information not mention in parameter -> consider as page 1
 $page_number = $_GET['page'] ?: 1;
-
-if($page_number > $total_paginations){
-    $obj->closeConnection();
-    Redirect::redirectHome(INVALID_PAGINATION);
+// If invalid pagination counter
+if($page_number > $total_paginations or $page_number < 1){
+    $page_number = 1;
 }
 
 // Page value for left page btn : '<'
@@ -30,12 +29,12 @@ $right_btn = (($page_number + 1) > $total_paginations) ? 1 : $page_number + 1;
 
 // Make pagination range
 // If page number is multiple of PAGINATION
-$range_base_number = (int)($page_number % PAGINATION) ? (int)($page_number / PAGINATION) * 10 : (int)($page_number / PAGINATION) - 1;
+$range_base_number = (int)($page_number % PAGINATION) ? (int)($page_number / PAGINATION) * PAGINATION : (int)($page_number / PAGINATION) - 1;
 // Pagination range start number
 // If page number is multiple of PAGINATION
 $pagination_range_start = $range_base_number + 1;
 // Pagination range end number -> Return minimum value compare with total_paginations and pagination_range_end number
-$pagination_range_end = min($total_paginations, $range_base_number + 10);
+$pagination_range_end = min($total_paginations, $range_base_number + PAGINATION);
 
 // Tab movenent btn : '<<'
 $left_tab_btn = $pagination_range_start - PAGINATION < 1 ? $total_paginations : $pagination_range_start - PAGINATION;
@@ -74,14 +73,15 @@ Header::render();
             $playerlist = $obj->getplayerlist_pagination($content_pagination_param);
             foreach ($playerlist as $key => $value){
                 $teamid = $value['TEAMID'];
-                $playerlist[$key]['TEAMID'] = $obj->getteamname($teamid)[0]['TEAMNAME'];
+                $playerlist[$key]['TEAMNAME'] = $obj->getteamname($teamid)[0]['TEAMNAME'];
             }
 
             foreach ($playerlist as $key => $value){
                 // Parse values
                 $player_id = $value['PLAYERID'];
                 $player_name = $value['PLAYERNAME'];
-                $team_name = $value['TEAMID'];
+                $team_id = $value['TEAMID'];
+                $team_name = $value['TEAMNAME'];
                 $position = $value['POSITION'];
                 $league = $value['LEAGUETYPE'];
                 $backnumber = $value['BACKNUMBER'];
@@ -93,7 +93,9 @@ Header::render();
                 <td class="tg-baqh">
                     <a href="'.PAGES_PATH."/player/playerinfo.php?player_id=".$player_id.'">'.$player_name.'</a>
                 </td>
-                <td class="tg-baqh">'.$team_name.'</td>
+                <td class="tg-baqh">
+                    <a href="'.PAGES_PATH."/team/teaminfo.php?team_id=".$team_id.'">'.$team_name.'</a>
+                </td>
                 <td class="tg-baqh">'.$position.'</td>
                 <td class="tg-baqh">'.$league.'</td>
                 <td class="tg-baqh">'.$backnumber.'</td>

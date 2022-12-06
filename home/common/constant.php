@@ -30,7 +30,8 @@ define('INVALID_PASSWORD',"Password : Should be longer than 6 and require at lea
 define('INVALID_PAGINATION',"Invalid pagination counter");
 
 // project config
-define('PAGINATION',10);
+define('PAGINATION',11);
 define('PAGINATION_HISTORY',5);
+define('PAGINATION_PLAYER_TEAMPAGE',8);
 
 ?>
