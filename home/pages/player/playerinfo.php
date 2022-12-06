@@ -1,69 +1,105 @@
 <?php
 include_once "../../common/common.php";
+include_once "../../app/player/player.php";
+
+# If player_id not given -> Redirect Home
+if(!isset($_GET['player_id'])){
+    Redirect::redirectHome("Invalid request! User id not given");
+}
+# Get player id
+$player_id = $_GET['player_id'];
+$obj = new Player();
+
+# Get player information
+$player_info = $obj ->getplayerinfo_individual($player_id);
+
+# If request with invalid player id -> Redirect Home
+if(!$player_info){
+    $obj->closeConnection();
+    Redirect::redirectHome("Invalid request! Player id not exist");
+}
+
+$player_info = $player_info[0];
+
+# Parse player's information
+$backnumber = $player_info['BACKNUMBER'];
+$name = $player_info['PLAYERNAME'];
+$position = $player_info['POSITION'];
+$teamname = $obj->getteamname($player_info['TEAMID'])[0]['TEAMNAME'];
+$height = $player_info['HEIGHT'];
+$weight = $player_info['WEIGHT'];
+$birth = $player_info['BIRTH'];
+$english_name = $player_info['PLAYERENGLISHNAME'];
+$country = $player_info['COUNTRY'];
+$league = strtoupper($player_info['LEAGUETYPE']);
+$imgurl = $player_info['IMGURL'];
+# Get player's previous league history
+$player_history = $obj->getplayerprevhistory($player_id,PAGINATION_HISTORY);
 
 HeaderWithAuth::render();
 ?>
 
 <div class="team-main">
     <?php
-    title_player_specify::title();
+    title_player::title_specify($english_name);
     ?>
 
     <div class="playerInfo-column">
         <div class="playerInfo-column__img">
             <div class="playerInfo-column__img__left">
-                <img src="https://kleague-admin-test.s3.ap-northeast-2.amazonaws.com/v1/player/player_20160237.png" alt="">
+                <img src="<?= $imgurl ?>" alt="">
             </div>
             <div class="playerInfo-column__img__right">
-                <div class="right__number"><span>No.11</span></div>
+                <div class="right__number"><span>No. <?= $backnumber ?></span></div>
                 <div class="right__block__bottom">
-                    <div class="right__name"><span>세징야</span></div>
-                    <div class="right__position"><span>FW</span></div>
+                    <div class="right__name" style="margin-right: 3px;"><span><?= $english_name ?></span></div>
+                    <div class="right__position" style="margin-left: 3px;"><span><?= $position ?></span></div>
                 </div>
             </div>
         </div>
         <div class="playerInfo-column__leftInfo">
             <div class="leftInfo__block">
                 <span>이름</span>
-                <span>세징야</span>
+                <span><?= $name ?></span>
             </div>
             <div class="leftInfo__block">
                 <span>소속구단</span>
-                <span>대구</span>
+                <span><a href="<?php echo PAGES_PATH."/team/teaminfo.php?team_id=".$player_info['TEAMID']?>"><?= $teamname ?></a></span>
             </div>
             <div class="leftInfo__block">
                 <span>배번</span>
-                <span>11</span>
+                <span><?= $backnumber ?></span>
             </div>
             <div class="leftInfo__block">
                 <span>키</span>
-                <span>177</span>
+                <span><?= $height ?> cm</span>
             </div>
             <div class="leftInfo__block">
-                <span>생년월일</span>
-                <span>1989/11/29</span>
+                <span>몸무게</span>
+                <span><?= $weight ?> kg</span>
             </div>
 
         </div>
         <div class="playerInfo-column__rightInfo">
             <div class="rightInfo__block">
                 <span>영문명</span>
-                <span>Cesar Fernando SILVA MELO</span>
+                <span><?= $english_name ?></span>
             </div>
             <div class="rightInfo__block">
                 <span>포지션</span>
-                <span>FW</span>
+                <span><?= $position ?></span>
             </div>
             <div class="rightInfo__block">
                 <span>국적</span>
-                <span>브라질</span>
+                <span><?= $country ?></span>
             </div>
             <div class="rightInfo__block">
-                <span>몸무게</span>
-                <span>74</span>
+                <span>생년월일</span>
+                <span><?= $birth ?></span>
             </div>
             <div class="rightInfo__block">
-
+                <span>리그</span>
+                <span><?= $league ?></span>
             </div>
         </div>
     </div>
@@ -75,40 +111,68 @@ HeaderWithAuth::render();
         <table class="tg">
             <thead>
             <tr>
-                <th class="tg-baqh">순위</th>
-                <th class="tg-baqh">선수 명</th>
-                <th class="tg-baqh">팀</th>
-                <th class="tg-baqh">포지션</th>
-                <th class="tg-baqh">득점</th>
-                <th class="tg-baqh">도움</th>
-                <th class="tg-baqh">공격포인트</th>
+                <th class="tg-baqh">리그</th>
+                <th class="tg-baqh">참여</th>
+                <th class="tg-baqh">승점</th>
+                <th class="tg-baqh">어시스트</th>
+                <th class="tg-baqh">골킥</th>
+                <th class="tg-baqh">코너킥</th>
+                <th class="tg-baqh">오프사이드</th>
                 <th class="tg-baqh">슈팅</th>
-                <th class="tg-baqh">출장</th>
-                <th class="tg-baqh">교체</th>
-                <th class="tg-baqh">경기당 기록</th>
+                <th class="tg-baqh">파울</th>
+                <th class="tg-baqh">실점</th>
+                <th class="tg-baqh">경고</th>
+                <th class="tg-baqh">퇴장</th>
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td class="tg-baqh">1</td>
-                <td class="tg-baqh">
-                    <a href="playerInfo.html">서해원</a>
-                </td>
-                <td class="tg-baqh">서울FC</td>
-                <td class="tg-baqh">FW</td>
-                <td class="tg-baqh">1</td>
-                <td class="tg-baqh">1</td>
-                <td class="tg-baqh">1</td>
-                <td class="tg-baqh">1</td>
-                <td class="tg-baqh">1</td>
-                <td class="tg-baqh">1</td>
-                <td class="tg-baqh">0.5</td>
-            </tr>
+            <?php
+            // If player's previous league history not found
+            if(!count($player_history)){
+                echo '<tr>
+<td colspan="12" class="tg-baqh">Player\'s previous league history not found</td>
+</tr>';
+            }
+            else{
+                foreach ($player_history as $key => $value) {
+                    // Parse previous league values
+                    $prev_league = $value['LEAGUENAME'];
+                    $prev_participant = $value['PARTICIPANT'];
+                    $prev_winningpoint = $value['WINNINGPOINT'];
+                    $prev_assist = $value['ASSIST'];
+                    $prev_goalkick = $value['GOALKICK'];
+                    $prev_cornerkick = $value['CORNERKICK'];
+                    $prev_offside = $value['OFFSIDE'];
+                    $prev_shooting = $value['SHOOTING'];
+                    $prev_foul = $value['FOUL'];
+                    $prev_losspoint = $value['LOSSPOINT'];
+                    $prev_warning = $value['WARNING'];
+                    $prev_left = $value['LEFT'];
+
+                    echo '<tr>
+                <td class="tg-baqh">'.$prev_league.'</td>
+                <td class="tg-baqh">'.$prev_participant.'</td>
+                <td class="tg-baqh">'.$prev_winningpoint.'</td>
+                <td class="tg-baqh">'.$prev_assist.'</td>
+                <td class="tg-baqh">'.$prev_goalkick.'</td>
+                <td class="tg-baqh">'.$prev_cornerkick.'</td>
+                <td class="tg-baqh">'.$prev_offside.'</td>
+                <td class="tg-baqh">'.$prev_shooting.'</td>
+                <td class="tg-baqh">'.$prev_foul.'</td>
+                <td class="tg-baqh">'.$prev_losspoint.'</td>
+                <td class="tg-baqh">'.$prev_warning.'</td>
+                <td class="tg-baqh">'.$prev_left.'</td>
+            </tr>';
+                }
+            }
+            ?>
+
             </tbody>
         </table>
     </div>
 </div>
 <?php
 Footer::render();
+$obj->closeConnection();
 ?>
 

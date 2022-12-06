@@ -23,7 +23,10 @@ class OracleConnector{
         $this->connect = oci_connect($this->config['username'],$this->config['password'],$this->db);
         if(!$this->connect){
             $e=oci_error();
-            trigger_error(htmlentities($e['message'],ENT_QUOTES),E_USER_ERROR);
+//            trigger_error(htmlentities($e['message'],ENT_QUOTES),E_USER_ERROR);
+            // Exception reaction about Database connetion error
+            $this->closeConnection();
+            Redirect::redirectHome("Something strange happend while connecting to Database!");
         }
     }
     public static function passwordencrypt($password){
