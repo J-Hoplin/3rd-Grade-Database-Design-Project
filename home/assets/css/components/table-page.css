@@ -18,6 +18,26 @@
     justify-content: center;
 }
 
+.table__page__team {
+    width: 100%;
+    height: 20%;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.table__page__team span {
+    width: 100px;
+    height: 30px;
+    border: 1px solid black;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .table__page__margin__right{
     margin: 0px 5px 0px 0px;
 }

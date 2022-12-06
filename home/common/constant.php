@@ -27,8 +27,10 @@ define('HOST',$_SERVER["HTTP_HOST"]);
 define('INVALID_EMAIL',"Email : Invalid email form");
 define('INVALID_USERNAME',"Username : Should be longer than 5 lower than 20 characters & Only upper/lower alphabet and number are available");
 define('INVALID_PASSWORD',"Password : Should be longer than 6 and require at least one upper & lower alphabet and number, special symbol");
+define('INVALID_PAGINATION',"Invalid pagination counter");
 
 // project config
 define('PAGINATION',10);
+define('PAGINATION_HISTORY',5);
 
 ?>

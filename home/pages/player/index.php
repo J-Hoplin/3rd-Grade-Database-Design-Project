@@ -5,16 +5,23 @@ include_once "../../app/player/player.php";
 
 $obj = new Player();
 
+# Get total count of players
 $total_players = (int)($obj->getplayercount()[0]["COUNT(*)"]);
+# Get maxium pagination counter
 $total_paginations = (int)($total_players / PAGINATION);
 
-# If data's count is in the case of not separating -> add 1 page for rest of datas
+# If data's count is in the case of not separating -> add 1 pagination for rest of datas
 if($total_players % PAGINATION){
     $total_paginations += 1;
 }
 
 // If page information not mention in parameter -> consider as page 1
 $page_number = $_GET['page'] ?: 1;
+
+if($page_number > $total_paginations){
+    $obj->closeConnection();
+    Redirect::redirectHome(INVALID_PAGINATION);
+}
 
 // Page value for left page btn : '<'
 $left_btn = (($page_number - 1 ) < 1) ? $total_paginations : $page_number - 1;
@@ -63,7 +70,7 @@ Header::render();
             <?php
             // pagination parameter
             $content_pagination_param = PAGINATION * ($page_number - 1);
-            // Get player list
+            // Get player list by pagination counter
             $playerlist = $obj->getplayerlist_pagination($content_pagination_param);
             foreach ($playerlist as $key => $value){
                 $teamid = $value['TEAMID'];
@@ -121,4 +128,5 @@ Header::render();
 
 <?php
 Footer::render();
+$obj->closeConnection();
 ?>
