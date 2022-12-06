@@ -29,9 +29,10 @@ define('INVALID_USERNAME',"Username : Should be longer than 5 lower than 20 char
 define('INVALID_PASSWORD',"Password : Should be longer than 6 and require at least one upper & lower alphabet and number, special symbol");
 define('INVALID_PAGINATION',"Invalid pagination counter");
 
-// project config
-define('PAGINATION',11);
-define('PAGINATION_HISTORY',5);
-define('PAGINATION_PLAYER_TEAMPAGE',8);
+// Pagination config constant
+// This is standard of font size 100% in chrome browser
+define('PAGINATION',10);
+define('PAGINATION_HISTORY',4);
+define('PAGINATION_PLAYER_TEAMPAGE',7);
 
 ?>

@@ -64,7 +64,7 @@ HeaderWithAuth::render();
             </div>
             <div class="leftInfo__block">
                 <span>소속구단</span>
-                <span><?= $teamname ?></span>
+                <span><a href="<?php echo PAGES_PATH."/team/teaminfo.php?team_id=".$player_info['TEAMID']?>"><?= $teamname ?></a></span>
             </div>
             <div class="leftInfo__block">
                 <span>배번</span>
