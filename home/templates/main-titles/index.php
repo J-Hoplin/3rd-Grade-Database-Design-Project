@@ -4,6 +4,7 @@ include_once dirname(__FILE__)."/../template.php";
 include_once "calendar/index.php";
 include_once "player/index.php";
 include_once "team/index.php";
+include_once "search/index.php";
 
 class title_main implements template_main_title{
     public static function title()

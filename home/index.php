@@ -1,8 +1,14 @@
 <?php
 
+include_once "common/common.php";
+
 # Get Project Root
 
-include_once "common/common.php";
+if(strtoupper($_SERVER['REQUEST_METHOD']) == "POST"){
+    if(isset($_POST['keyword'])){
+        Redirect::redirection(PAGES_PATH."/search?keyword=".$_POST['keyword']);
+    }
+}
 
 Header::render();
 ?>
@@ -24,8 +30,8 @@ Header::render();
     </div>
 
     <div class="index-main__search">
-        <form action="/search" method="get">
-            <input id="search-box" type="text" placeholder="팀명.. 선수명.." autocomplete="off">
+        <form action="<?= $_SERVER['PHP_SELF'] ?>" method="post">
+            <input id="search-box" name="keyword" type="text" placeholder="선수 이름 검색하기" autocomplete="off">
             <input id="search-btn" type="submit" value="Search" autocomplete="off">
         </form>
     </div>
