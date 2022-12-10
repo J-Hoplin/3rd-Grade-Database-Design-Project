@@ -79,7 +79,7 @@ class Team extends OracleConnector
      * Get teaminformation - players count
      */
     public function getteaminfo_playerscount($teamid){
-        $sql = "SELECT count(*) FROM player_info WHERE teamteamid=:teamid";
+        $sql = "SELECT count(*) FROM player_info WHERE teamid=:teamid";
         $bucket = array(
             ":teamid"=>$teamid
         );
@@ -93,7 +93,7 @@ class Team extends OracleConnector
      * Get teaminformation - players information
      */
     public function getteaminfo_players($teamid){
-        $sql = "SELECT * FROM player_info WHERE teamteamid=:teamid";
+        $sql = "SELECT * FROM player_info WHERE teamid=:teamid";
         $bucket = array(
             ":teamid"=>$teamid
         );
@@ -106,11 +106,12 @@ class Team extends OracleConnector
      *
      * Get teaminformation - players information by pagination
      */
-    public function getteaminfo_players_pagination($pagination_start)
+    public function getteaminfo_players_pagination($teamid,$pagination_start)
     {
-        $sql = "SELECT * FROM (SELECT ROWNUM as seqnum, player_info.* FROM player_info) WHERE seqnum BETWEEN :range_start AND :range_end";
+        $sql = "SELECT * FROM (SELECT ROWNUM as seqnum, player_info.* FROM player_info WHERE teamid=:teamid) WHERE seqnum BETWEEN :range_start AND :range_end";
         // Pagination content number range : *1 ~ *0
         $bucket = array(
+            ":teamid" => $teamid,
             ":range_start"=>$pagination_start + 1,
             ":range_end"=>$pagination_start + PAGINATION_PLAYER_TEAMPAGE
         );

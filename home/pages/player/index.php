@@ -29,11 +29,13 @@ $right_btn = (($page_number + 1) > $total_paginations) ? 1 : $page_number + 1;
 
 // Make pagination range
 // If page number is multiple of PAGINATION
+// << < [--------] > >>
 $range_base_number = (int)($page_number % PAGINATION) ? (int)($page_number / PAGINATION) * PAGINATION : (int)($page_number / PAGINATION) - 1;
 // Pagination range start number
-// If page number is multiple of PAGINATION
+// Number of left
 $pagination_range_start = $range_base_number + 1;
 // Pagination range end number -> Return minimum value compare with total_paginations and pagination_range_end number
+// Number of right
 $pagination_range_end = min($total_paginations, $range_base_number + PAGINATION);
 
 // Tab movenent btn : '<<'

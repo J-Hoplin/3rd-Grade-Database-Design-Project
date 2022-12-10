@@ -31,7 +31,7 @@ $teamstadium = $obj->getteamstadium($teamid)[0]['STADIUMNAME'];
 // Get players relate to team
 $teamplayers = $obj->getteaminfo_players($teamid);
 // Get total count of related player
-$totalplayers = (int)($obj->getteamcount()[0]["COUNT(*)"]);
+$totalplayers = (int)($obj->getteaminfo_playerscount($teamid)[0]["COUNT(*)"]);
 // Get maximum pagination counter
 $total_paginations = (int)($totalplayers / PAGINATION_PLAYER_TEAMPAGE);
 // If data's count is in the case of not separating -> add 1 pagination for rest of datas
@@ -140,7 +140,7 @@ HeaderWithAuth::render();
             // pagination parameter
             $content_pagination_param = PAGINATION_PLAYER_TEAMPAGE * ($page_number - 1);
             // Get player list by pagination counter
-            $playerlist = $obj->getteaminfo_players_pagination($content_pagination_param);
+            $playerlist = $obj->getteaminfo_players_pagination($teamid,$content_pagination_param);
             foreach ($playerlist as $key => $value){
                 // Parse values
                 $player_id = $value['PLAYERID'];
