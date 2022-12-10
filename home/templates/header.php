@@ -58,9 +58,6 @@ class Header implements template_header_footer {
     <div class="index-header__column">
         <a href="'.PAGES_PATH.'/player"> <span>선수</span></a>
     </div>
-    <div class="index-header__column">
-        <a href="'.PAGES_PATH.'/calendar"> <span>일정</span></a>
-    </div>
 </header>';
     }
 

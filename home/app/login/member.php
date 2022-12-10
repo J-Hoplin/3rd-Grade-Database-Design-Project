@@ -37,7 +37,7 @@ class Member extends OracleConnector {
      * Check if username already in used
      */
     public function checkusernameenrolled($username){
-        $sql = "SELECT email FROM member where username=:username";
+        $sql = "SELECT username FROM member where username=:username";
         $bucket = array(
             ":username"=>$username
         );
